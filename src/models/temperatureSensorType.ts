@@ -1,4 +1,5 @@
 export enum TemperatureSensorType {
     k = "K",
-    ir = "IR"
+    ir = "IR",
+    multiple = "Multiple"
 }

@@ -1,23 +1,30 @@
 import * as util from "util";
-import { ISimpleEvent, SimpleEventDispatcher } from "strongly-typed-events";
 import { TemperatureSensor } from "./temperatureSensor";
 import { SensorState } from "./sensorState";
 import { init } from "raspi";
 import { I2C } from "raspi-i2c";
 
-const MLX90614_IIC_ADDR: number = 0x5A;
 const MLX90614_AMBIENT_ADDR: number = 0x06;
 const MLX90614_OBJECT_ADDR: number = 0x07;
 
 export class Mlx90614 extends TemperatureSensor {
-    private _mlx90614: I2C;
+    private static _i2c: I2C;
+    private _i2cAddress: number;
+
+    static get i2cInstance(): I2C {
+        if (util.isNullOrUndefined(Mlx90614._i2c)) {
+            Mlx90614._i2c = new I2C();
+        }
+        return Mlx90614._i2c;
+    }
 
     // interval is in seconds
-    constructor(interval: number = 1) {
+    constructor(i2cAddress: number, interval: number) {
         super(interval);
+        this._i2cAddress = i2cAddress;
         this._connectionPromise = new Promise<void>((resolve, reject) => {
             init(() => {
-                this._mlx90614 = new I2C();
+                const _i2c: I2C = Mlx90614.i2cInstance;
                 resolve();
             });
         });
@@ -29,17 +36,18 @@ export class Mlx90614 extends TemperatureSensor {
 
     readtemp = (): Promise<number> => {
         return new Promise<number>((resolve, reject) => {
-            this._mlx90614.writeByte(MLX90614_IIC_ADDR, MLX90614_OBJECT_ADDR, (err: Error) => {
+            Mlx90614.i2cInstance.writeByte(this._i2cAddress, MLX90614_OBJECT_ADDR, (err: Error) => {
                 if (err) {
                     reject(`Error: ${err.message}`);
                 }
 
                 let result: number;
-                this._mlx90614.read(MLX90614_IIC_ADDR, MLX90614_OBJECT_ADDR, 3, (err1: Error, data: Buffer) => {
+                Mlx90614.i2cInstance.read(this._i2cAddress, MLX90614_OBJECT_ADDR, 3, (err1: Error, data: Buffer) => {
                     result = data[0] | (data[1] << 8);
                     result = (result * 0.02) - 273.15;
                     result = Math.round(result * 100) / 100;
-                    this._onTemperatureRead.dispatch(result);
+                    this._temp = result;
+                    this._onTemperatureRead.dispatch(this, result);
                     resolve(result);
 
                     if (this._state === SensorState.Running) {

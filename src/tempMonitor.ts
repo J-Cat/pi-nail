@@ -1,12 +1,12 @@
 import * as util from "util";
-import { TemperatureSensor, Max6675, Mlx90614 } from "./temperature";
+import { AggregationType, MultipleTemperatureSensor, TemperatureSensor, Max6675, Mlx90614 } from "./temperature";
 import { spawnSync, ChildProcess } from "child_process";
 import { IConfig } from "./models/IConfig";
 import { TemperatureSensorType } from "./models/temperatureSensorType";
 const config: IConfig = require("./config.json");
 
 // constants
-const tempSensorType: TemperatureSensorType = TemperatureSensorType.k;
+const tempSensorType: string = TemperatureSensorType.multiple;
 const onOffHeaterPin: number = 12; // GPIO # for On/Off heater
 const pwmHeaterPin: number = 13; // GPIO # for PWM heater
 const tcBus: number = 1; // thermocouple bus #
@@ -46,12 +46,26 @@ process.on("uncaughtException", err => {
 });
 
 // read temps
-const tempSensor: TemperatureSensor
-    = tempSensorType === TemperatureSensorType.k
-        ? new Max6675(tcBus, tcDevice, 10)
-        : new Mlx90614(10);
+let tempSensor: TemperatureSensor;
+switch (tempSensorType) {
+    case TemperatureSensorType.ir:
+        tempSensor = new Mlx90614(0x5A, 10);
+        break;
 
-tempSensor.onTemperatureRead.subscribe((value: number): void => {
+    case TemperatureSensorType.multiple:
+        tempSensor = new MultipleTemperatureSensor([
+                new Mlx90614(0x5A, 10),
+                new Mlx90614(0x5B, 10)
+            ],
+            10, AggregationType.Avg);
+        break;
+
+    default:
+        tempSensor = new Max6675(tcBus, tcDevice, 10);
+        break;
+}
+
+tempSensor.onTemperatureRead.subscribe((source: TemperatureSensor, value: number): void => {
     if (value > maxTemp) {
         cleanup();
         console.log(`Max Temperature Exceeded! Current temperature: ${value}`);

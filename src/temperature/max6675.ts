@@ -1,6 +1,5 @@
 import * as spi from "spi-device";
 import * as util from "util";
-import { ISimpleEvent, SimpleEventDispatcher } from "strongly-typed-events";
 import { TemperatureSensor } from "./temperatureSensor";
 import { SensorState } from "./sensorState";
 
@@ -8,7 +7,7 @@ export class Max6675 extends TemperatureSensor {
     private _max6675: spi.SpiDevice;
 
     // interval is in seconds
-    constructor(busNumber: number, deviceNumber: number, interval: number = 1) {
+    constructor(busNumber: number, deviceNumber: number, interval: number) {
         super(interval);
         this._connectionPromise = new Promise<void>((resolve, reject) => {
             this._max6675 = spi.open(busNumber, deviceNumber, (err: Error) => {
@@ -66,7 +65,7 @@ export class Max6675 extends TemperatureSensor {
                 rawValue = (rawValue >> 3) / 4;
 
                 this._temp = rawValue;
-                this._onTemperatureRead.dispatch(rawValue);
+                this._onTemperatureRead.dispatch(this, rawValue);
 
                 resolve(rawValue);
 

@@ -1,6 +1,6 @@
 import * as util from "util";
 import * as fs from "fs";
-import { TemperatureSensor, Max6675, Mlx90614 } from "./temperature";
+import { AggregationType, TemperatureSensor, MultipleTemperatureSensor, Max6675, Mlx90614 } from "./temperature";
 import { PID, PIDIC, PIDBC } from "./ardupid";
 import { HeaterBase, PwmHeater, OnOffHeater } from "./heater";
 import { Menu } from "./menu";
@@ -13,12 +13,11 @@ import { ITunings } from "./models/ITunings";
 import { ISettings } from "./models/ISettings";
 
 // constants
-let heaterType: HeaterType = HeaterType.Pwm;
-let tempSensorType: TemperatureSensorType = TemperatureSensorType.ir;
 const onOffHeaterPin: number = 12; // heater GPIO # for relay
 const pwmHeaterPin: number = 13;  // heater GPIO # for PWM
 const tcBus: number = 1; // thermocouple bus #
 const tcDevice: number = 2; // thermocouple device #
+const mlx90614Address: number = 0x5B;
 const setPointStep: number = 10;
 const filteredSetPointDelta: number = 20;
 
@@ -38,6 +37,13 @@ let tcInterval: number = 0.5; // thermocouple read interval in seconds
 let cycleTime: number = 500;  // cycle time in milliseconds for heater cycle adjustments
 let maxOutputCount: number = 0;
 
+let heaterType: HeaterType = HeaterType.Pwm;
+const tempSensorTypes: TemperatureSensorType[] = [TemperatureSensorType.ir, TemperatureSensorType.ir];
+const tempSensorArgs: any[] =[
+    [0x5A, cycleTime],
+    [0x5B, cycleTime]
+];
+
 // process variables
 let error: number = 0;
 let output: number = 0;
@@ -49,11 +55,12 @@ let menu: Menu;
 let controller: PID;
 let heater: HeaterBase;
 let tempSensor: TemperatureSensor;
+let tempSensors: TemperatureSensor[] = [];
 
 let config: IConfig = require("./config.json");
 
 // event fired when temperature is read from thermocouple
-const onTemperatureRead: (value: number) => void = (value: number) => {
+const onTemperatureRead: (source: TemperatureSensor, value: number) => void = (source: TemperatureSensor, value: number) => {
     if (!util.isNumber(value)) {
         return;
     }
@@ -254,11 +261,25 @@ loadConfig()
     // controller = new PIDBC(output, kP, kI, kD, n, Date.now(), 0.5);
 
     // initialize thermocouple
-    if (tempSensorType === TemperatureSensorType.k) {
-        tempSensor = new Max6675(tcBus, tcDevice, tcInterval);
-    } else {
-        tempSensor = new Mlx90614(tcInterval);
-    }
+    tempSensorTypes.forEach((sensorType: TemperatureSensorType, index: number) => {
+        switch (sensorType) {
+            case TemperatureSensorType.k:
+                if (tempSensorArgs[index].length < 3) {
+                    throw new Error("Not enough arguments for all temperature sensors!");
+                } else {
+                    tempSensors.push(new Max6675(tempSensorArgs[index][0], tempSensorArgs[index][1], tempSensorArgs[index][2]));
+                }
+                break;
+
+            case TemperatureSensorType.ir:
+                if (tempSensorArgs[index].length < 2) {
+                    throw new Error("Not enough arguments for all temperature sensors!");
+                } else {
+                    tempSensors.push(new Mlx90614(tempSensorArgs[index][0], tempSensorArgs[index][1]));
+                }
+        }
+    });
+    tempSensor = new MultipleTemperatureSensor(tempSensors, tcInterval, AggregationType.Avg);
 
     // start heat management process
     if (heaterType === HeaterType.OnOff) {

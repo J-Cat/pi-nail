@@ -5,7 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "blessed": "^0.1.81",
-    "blessed-contrib": "file:blessed-contrib",
+    "blessed-contrib": "git:github.com/J-Cat/blessed-contrib",
     "strongly-typed-events": "^1.4.2",
     "ts-loader": "^4.2.0"
   },
