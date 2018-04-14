@@ -1,0 +1,39 @@
+{
+  "name": "pi-nail",
+  "version": "0.1.0",
+  "description": "Raspberry Pi eNail Controller in TypeScript (NodeJS)",
+  "main": "app.js",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "blessed-contrib": "file:blessed-contrib",
+    "strongly-typed-events": "^1.4.2",
+    "ts-loader": "^4.2.0"
+  },
+  "overrides": {
+    "os": { 
+      "linux": {
+        "depencies": {
+          "onoff": "^3.0.2",
+          "raspi": "^5.0.2",
+          "raspi-i2c": "^6.1.0",
+          "raspi-pwm": "^5.0.0",
+          "spi-device": "^2.0.1"
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/blessed": "^0.1.10",
+    "@types/es6-promise": "^3.3.0",
+    "@types/onoff": "0.0.27",
+    "@types/raspi": "^5.0.0",
+    "@types/raspi-i2c": "^6.1.0",
+    "@types/raspi-pwm": "^5.0.0",
+    "typescript": "^2.8.1"
+  },
+  "scripts": {
+    "start": "babel-node src/app.ts"
+  },
+  "author": "",
+  "license": "ISC"
+}

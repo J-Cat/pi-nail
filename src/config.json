@@ -1,0 +1,10 @@
+{
+    "p": 4,
+    "i": 62,
+    "d": 20,
+    "setPoint": 150,
+    "maxPower": 100,
+    "maxTemp": 200,
+    "tcInterval": 0.25,
+    "cycleTime": 250
+}
