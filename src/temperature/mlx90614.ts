@@ -36,19 +36,21 @@ export class Mlx90614 extends TemperatureSensor {
 
     readtemp = (): Promise<number> => {
         return new Promise<number>((resolve, reject) => {
-            Mlx90614.i2cInstance.writeByte(this._i2cAddress, MLX90614_OBJECT_ADDR, (err: Error) => {
-                if (err) {
-                    reject(`Error: ${err.message}`);
+            Mlx90614.i2cInstance.writeByte(this._i2cAddress, MLX90614_OBJECT_ADDR, (err: Error | string | null) => {
+                if (!util.isNullOrUndefined(err)) {
+                    reject(`Error: ${err instanceof Error ? err.message : err}`);
                 }
 
                 let result: number;
-                Mlx90614.i2cInstance.read(this._i2cAddress, MLX90614_OBJECT_ADDR, 3, (err1: Error, data: Buffer) => {
-                    result = data[0] | (data[1] << 8);
-                    result = (result * 0.02) - 273.15;
-                    result = Math.round(result * 100) / 100;
-                    this._temp = result;
-                    this._onTemperatureRead.dispatch(this, result);
-                    resolve(result);
+                Mlx90614.i2cInstance.read(this._i2cAddress, MLX90614_OBJECT_ADDR, 3, (err1: string | Error | null, data: number | Buffer | null) => {
+                    if (data instanceof Buffer) {
+                        result = data[0] | (data[1] << 8);
+                        result = (result * 0.02) - 273.15;
+                        result = Math.round(result * 100) / 100;
+                        this._temp = result;
+                        this._onTemperatureRead.dispatch(this, result);
+                        resolve(result);
+                    }
 
                     if (this._state === SensorState.Running) {
                         setTimeout(this.readtemp, this._interval);

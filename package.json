@@ -12,7 +12,7 @@
   "overrides": {
     "os": { 
       "linux": {
-        "depencies": {
+        "dependencies": {
           "onoff": "^3.0.2",
           "raspi": "^5.0.2",
           "raspi-i2c": "^6.1.0",

@@ -12,9 +12,9 @@ export class Menu {
     private box: Blessed.Widgets.BoxElement;
     private donut: BlessedContrib.Widgets.DonutElement;
     private line: BlessedContrib.Widgets.LineElement;
-    private series1: BlessedContrib.Widgets.LineData;
-    private series2: BlessedContrib.Widgets.LineData;
-    private configForm: Blessed.Widgets.FormElement<FormData>;
+    private series1!: BlessedContrib.Widgets.LineData;
+    private series2!: BlessedContrib.Widgets.LineData;
+    private configForm!: Blessed.Widgets.FormElement<FormData>;
 
     private pastValues: number[] = [];
     private pastSetPoints: number[] = [];
@@ -420,7 +420,7 @@ export class Menu {
         // });
 
         this.screen.key(["escape"], (ch, key) => {
-            if (this._inConfig) {
+            if (this._inConfig && !util.isNullOrUndefined(this.configForm)) {
                 this.configForm.cancel();
             }
         });

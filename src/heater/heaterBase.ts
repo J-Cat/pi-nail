@@ -1,7 +1,7 @@
 export abstract class HeaterBase {
-    protected _maxPower: number;
-    protected _maxTemp: number;
-    protected _cycleTime: number;
+    protected _maxPower!: number;
+    protected _maxTemp!: number;
+    protected _cycleTime!: number;
 
     protected _running: boolean = false;
     protected _presentValue: number = 0;

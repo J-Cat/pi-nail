@@ -3,9 +3,6 @@ import { AntiWindupType } from "./antiWindupType";
 export abstract class PIDBase {
     abstract compute(error: number): number;
 
-    OUTMIN: number = 0;
-    OUTMAX: number = 100;
-
     protected _kP: number; // proportional gain
     protected _kI: number; // integral gain
     protected _kD: number; // derivative gain
@@ -16,8 +13,8 @@ export abstract class PIDBase {
     protected _kF: number; // derivative filter coefficient (depends only on N)
     protected _output: number;
     protected _lastTime: number;
-    protected _outMin: number;
-    protected _outMax: number;
+    protected _outMin: number = 0;
+    protected _outMax: number = 100;
     protected _aW: AntiWindupType;
     protected _errorOld: number;
     protected _duI: number; // integral contribution to the control action
@@ -48,7 +45,6 @@ export abstract class PIDBase {
             this._kB = 0;
         }
 
-        this.setSaturation(this.OUTMIN, this.OUTMAX); // default output limit are big enough not to limit anything(I hope)
         this._lastTime  = Date.now();
         this._errorOld = 0;
         this._duD = 0;
