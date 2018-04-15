@@ -2,11 +2,12 @@ import * as util from "util";
 import * as  Blessed from "blessed";
 import * as BlessedContrib from "blessed-contrib";
 import { ISimpleEvent, SimpleEventDispatcher } from "strongly-typed-events";
-import { PIDState } from "./models/PIDState";
-import { ITunings } from "./models/ITunings";
-import { ISettings } from "./models/ISettings";
+import { PIDState } from "../models/PIDState";
+import { ITunings } from "../models/ITunings";
+import { ISettings } from "../models/ISettings";
+import { BaseUi } from "./baseUi";
 
-export class Menu {
+export class Menu extends BaseUi {
     private screen: Blessed.Widgets.Screen;
     private grid: BlessedContrib.grid;
     private box: Blessed.Widgets.BoxElement;
@@ -16,102 +17,18 @@ export class Menu {
     private series2!: BlessedContrib.Widgets.LineData;
     private configForm!: Blessed.Widgets.FormElement<FormData>;
 
-    private pastValues: number[] = [];
-    private pastSetPoints: number[] = [];
-
-    private _state: PIDState = PIDState.Stopped;
-    private _settings: ISettings;
-    private _presentValue: number = 0;
-    private _output: number = 0;
     private _inConfig: boolean = false;
-    private xOffset: number = 0;
 
-    private _onChangeState: SimpleEventDispatcher<PIDState> = new SimpleEventDispatcher<PIDState>();
-    get onChangeState(): ISimpleEvent<PIDState> {
-        return this._onChangeState.asEvent();
+    onDataUpdated = (): void => {
+        this.render();
     }
 
-    get tunings(): ITunings {
-        return this._settings.tunings;
+    onSettingsUpdated = (): void => {
+        this.render();
     }
 
-    set tunings(value: ITunings) {
-        this._settings.tunings = value;
-    }
-
-    private _onChangeSetPoint: SimpleEventDispatcher<number> = new SimpleEventDispatcher<number>();
-    get onChangeSetPoint(): ISimpleEvent<number> {
-        return this._onChangeSetPoint.asEvent();
-    }
-
-    private _onChangeOutput: SimpleEventDispatcher<number> = new SimpleEventDispatcher<number>();
-    get onChangeOutput(): ISimpleEvent<number> {
-        return this._onChangeOutput.asEvent();
-    }
-
-    private _onChangeTunings: SimpleEventDispatcher<ITunings> = new SimpleEventDispatcher<ITunings>();
-    get onChangeTunings(): ISimpleEvent<ITunings> {
-        return this._onChangeTunings.asEvent();
-    }
-
-    private _onChangeSettings: SimpleEventDispatcher<ISettings> = new SimpleEventDispatcher<ISettings>();
-    get onChangeSettings(): ISimpleEvent<ISettings> {
-        return this._onChangeSettings.asEvent();
-    }
-
-    set presentValue(value: number) {
-        if (this._presentValue === value) {
-            return;
-        }
-        this._presentValue = value;
-
-        if (this.pastValues.length >= 100) {
-            this.xOffset = this.xOffset >= 899 ? 0 : this.xOffset + 1;
-            if (this.xOffset === 900) {
-                this. xOffset = 0;
-            }
-            this.pastValues.shift();
-            this.pastSetPoints.shift();
-        }
-        this.pastValues.push(this._presentValue);
-        this.pastSetPoints.push(this._settings.setPoint as number);
-    }
-
-    get presentValue(): number {
-        return this._presentValue;
-    }
-
-    set output(value: number) {
-        if (this._output === value) {
-            return;
-        }
-
-        this._output = value;
-        if (!this._inConfig) {
-            this.render();
-        }
-    }
-
-    get output(): number {
-        return this._output;
-    }
-
-
-    constructor(kP: number, kI: number, kD: number,
-        setPoint: number, maxPower: number, maxTemp: number,
-        tcInterval: number, cycleTime: number) {
-        this._settings = {
-            tunings: {
-                p: kP,
-                i: kI,
-                d: kD
-            },
-            setPoint: setPoint,
-            maxPower: maxPower,
-            maxTemp: maxTemp,
-            tcInterval: tcInterval,
-            cycleTime: cycleTime
-        };
+    constructor(settings: ISettings) {
+        super(settings);
 
         this.screen = Blessed.screen({
             smartCSR: true,
@@ -166,7 +83,7 @@ export class Menu {
             const prompt: Blessed.Widgets.PromptElement = Blessed.prompt();
             this.box.append(prompt);
             prompt.focus();
-            prompt.readInput("Please enter set point value", setPoint.toString(10), (err: Error, value: string) => {
+            prompt.readInput("Please enter set point value", this._settings.setPoint.toString(10), (err: Error, value: string) => {
                 if (!util.isNullOrUndefined(value)) {
                     const v: number = parseFloat(value);
                     if (util.isNumber(v)) {
@@ -403,22 +320,6 @@ export class Menu {
             process.exit(0);
         });
 
-        // this.screen.on("keypress", (ch: string, key: Blessed.Widgets.Events.IKeyEventArg) => {
-        //     if (this._inConfig) {
-        //         let parent: Blessed.Widgets.Node = this.screen.focused;
-        //         while (!util.isNullOrUndefined(parent) && parent.type !== "form") {
-        //             parent = parent.parent;
-        //         }
-        //         if (util.isNullOrUndefined(parent) || parent.type !== "form") {
-        //             this.configForm.focus();
-        //         }
-
-        //         if (key.name === "escape") {
-        //             this.configForm.cancel();
-        //         }
-        //     }
-        // });
-
         this.screen.key(["escape"], (ch, key) => {
             if (this._inConfig && !util.isNullOrUndefined(this.configForm)) {
                 this.configForm.cancel();
@@ -433,8 +334,9 @@ export class Menu {
                 this._settings.setPoint = Math.min(this._settings.setPoint + 1, this._settings.maxTemp);
                 this._onChangeSetPoint.dispatch(this._settings.setPoint);
             } else if (this._state === PIDState.Manual) {
-                this._output = Math.min(this._output + 5, this._settings.maxPower);
-                this._onChangeOutput.dispatch(this._output);
+                const newOutput: number = Math.min(this._data.output + 5, this._settings.maxPower);
+                this._onChangeOutput.dispatch(newOutput);
+                this._data.output = newOutput;
             }
             this.render();
         });
@@ -447,8 +349,9 @@ export class Menu {
                 this._settings.setPoint = Math.max(this._settings.setPoint - 1, 0);
                 this._onChangeSetPoint.dispatch(this._settings.setPoint);
             } else if (this._state === PIDState.Manual) {
-                this._output = Math.max(this._output - 5, 0);
-                this._onChangeOutput.dispatch(this._output);
+                const newOutput: number = Math.max(this._data.output - 5, 0);
+                this._onChangeOutput.dispatch(newOutput);
+                this._data.output = newOutput;
             }
             this.render();
         });
@@ -461,8 +364,9 @@ export class Menu {
                 this._settings.setPoint = Math.min(this._settings.setPoint + 5, this._settings.maxTemp);
                 this._onChangeSetPoint.dispatch(this._settings.setPoint);
             } else if (this._state === PIDState.Manual) {
-                this._output = Math.min(this._output + 10, this._settings.maxPower);
-                this._onChangeOutput.dispatch(this._output);
+                const newOutput: number = Math.min(this._data.output + 10, this._settings.maxPower);
+                this._onChangeOutput.dispatch(newOutput);
+                this._data.output = newOutput;
             }
             this.render();
         });
@@ -475,11 +379,16 @@ export class Menu {
                 this._settings.setPoint = Math.max(this._settings.setPoint - 5, 0);
                 this._onChangeSetPoint.dispatch(this._settings.setPoint);
             } else if (this._state === PIDState.Manual) {
-                this._output = Math.max(this._output - 10, 0);
-                this._onChangeOutput.dispatch(this._output);
+                const newOutput: number = Math.max(this._data.output - 10, 0);
+                this._onChangeOutput.dispatch(newOutput);
+                this._data.output = newOutput;
             }
             this.render();
         });
+    }
+
+    start = (): void => {
+        this.render();
     }
 
     render: () => void = () => {
@@ -497,7 +406,7 @@ export class Menu {
             + `D = ${this._settings.tunings.d}`
         );
 
-        let tempRatio: number = this._presentValue / this._settings.setPoint;
+        let tempRatio: number = this._data.presentValue / this._settings.setPoint;
         let tempColour: string = "green";
         if (tempRatio > 1 && tempRatio < 1.05) {
             tempRatio = 1;
@@ -508,11 +417,11 @@ export class Menu {
             tempRatio = 1;
             tempColour = "red";
         }
-        const outputRatio: number = this._output / this._settings.maxPower;
+        const outputRatio: number = this._data.output / this._settings.maxPower;
 
         this.donut.setData([{
             percent: (Math.round(tempRatio * 100) === 1 ? 0.1 : Math.round(tempRatio * 100)).toString(10),
-            label: `Temp (${Math.round(this._presentValue)}C / ${this._settings.setPoint}C)`,
+            label: `Temp (${Math.round(this._data.presentValue)}C / ${this._settings.setPoint}C)`,
             color: tempColour
         },
         {

@@ -1,9 +1,24 @@
-import { Menu } from "./menu";
+import { Menu } from "./ui/menu";
 
-let menu: Menu = new Menu(8, 2, 1, 185, 100, 350, 0.25, 250);
-menu.presentValue = 170;
-menu.output = 70;
-menu.render();
+let menu: Menu = new Menu({
+    tunings: {
+        p: 8,
+        i: 2,
+        d: 1
+    },
+    setPoint: 185,
+    maxPower: 100,
+    maxTemp: 250,
+    tcInterval: 0.25,
+    cycleTime: 250
+});
+menu.data = {
+    presentValue: 170,
+    output: 70,
+    error: 10,
+    filteredSetPoint: 185
+};
+menu.start();
 
 let i: number = 0;
 
@@ -11,8 +26,13 @@ setTimeout(updateTemp, 1000);
 
 function updateTemp(): void {
     i += 1;
-    menu.presentValue += 1;
-    menu.render();
+    menu.data = {
+        presentValue: menu.data.presentValue + 1,
+        output: 70,
+        error: 10,
+        filteredSetPoint: 185
+    };
+
     if (i < 1000) {
         setTimeout(updateTemp, 1000);
     }

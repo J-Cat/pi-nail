@@ -6,8 +6,9 @@ import * as SocketIO from "socket.io";
 import { AggregationType, TemperatureSensor, MultipleTemperatureSensor, Max6675, Mlx90614 } from "./temperature";
 import { PID, PIDIC, PIDBC } from "./ardupid";
 import { HeaterBase, PwmHeater, OnOffHeater } from "./heater";
-import { requestHandler } from "./service/requestHandler";
-import { Menu } from "./menu";
+import { requestHandler } from "./ui";
+import { SocketIoUi } from "./ui/socketIoUi";
+import { Menu } from "./ui/menu";
 
 import { IConfig } from "./models/IConfig";
 import { PIDState } from "./models/PIDState";
@@ -15,6 +16,7 @@ import { HeaterType } from "./models/heaterType";
 import { TemperatureSensorType } from "./models/temperatureSensorType";
 import { ITunings } from "./models/ITunings";
 import { ISettings } from "./models/ISettings";
+import { BaseUi } from "./ui/baseUi";
 
 // constants
 const onOffHeaterPin: number = 12; // heater GPIO # for relay
@@ -55,7 +57,8 @@ let presentValue: number = 0;
 let _state: PIDState = PIDState.Stopped;
 
 // main process objects
-let menu: Menu;
+//let menu: Menu;
+let userInterfaces: BaseUi[] = [];
 let controller: PID;
 let heater: HeaterBase;
 let tempSensor: TemperatureSensor;
@@ -77,7 +80,7 @@ const onTemperatureRead: (source: TemperatureSensor, value: number) => void = (s
             calculateFilteredSetPoint();
             error = filteredSetPoint - presentValue;
             output = controller.compute(error);
-            menu.debug(`S${setPoint}-F${filteredSetPoint}-I${initialSetPoint}-O${output}`);
+            //menu.debug(`S${setPoint}-F${filteredSetPoint}-I${initialSetPoint}-O${output}`);
             heater.output = output;
             break;
 
@@ -88,9 +91,14 @@ const onTemperatureRead: (source: TemperatureSensor, value: number) => void = (s
         default:
             error = 0;
     }
-    menu.presentValue = presentValue;
-    menu.output = output;
-    menu.render();
+    userInterfaces.forEach((ui: BaseUi) => {
+        ui.data = {
+            presentValue: presentValue as number,
+            output: output as number,
+            error: error as number,
+            filteredSetPoint: filteredSetPoint as number
+        };
+    });
 };
 
 const calculateFilteredSetPoint: () => void = () => {
@@ -179,10 +187,37 @@ const saveConfig: () => void = () => {
     );
 };
 
-const initMenu: () => void = () => {
-    menu = new Menu(kP, kI, kD, setPoint, maxPower, maxTemp, tcInterval, cycleTime);
+const updateOtherUis = (id: string, isDataUpdate: boolean, isSettingsUpdate: boolean): void =>  {
+    userInterfaces.forEach((otherUi: BaseUi) => {
+        if (otherUi.id !== id) {
+            if (isDataUpdate) {
+                otherUi.data = {
+                    presentValue: presentValue,
+                    output: output,
+                    error: error,
+                    filteredSetPoint: filteredSetPoint
+                };
+            }
+            if (isSettingsUpdate) {
+                otherUi.settings = {
+                    tunings: {
+                        p: kP,
+                        i: kI,
+                        d: kD
+                    },
+                    setPoint: setPoint,
+                    maxPower:  maxPower,
+                    maxTemp: maxTemp,
+                    tcInterval:  output,
+                    cycleTime:  cycleTime
+                };
+            }
+        }
+    });
+};
 
-    menu.onChangeState.subscribe((state: PIDState) => {
+const initUi: (ui: BaseUi) => void = (ui) => {
+    ui.onChangeState.subscribe((state: PIDState) => {
         _state = state;
         switch (_state) {
             case PIDState.Auto:
@@ -206,36 +241,43 @@ const initMenu: () => void = () => {
                 heater.stop();
                 break;
         }
+
+        updateOtherUis(ui.id, true, false);
     });
 
-    menu.onChangeSetPoint.subscribe((value: number) => {
+    ui.onChangeSetPoint.subscribe((value: number) => {
         error = 0;
         output = 0;
         heater.output = output;
         updateSetPoint(value);
+        updateOtherUis(ui.id, true, true);
     });
 
-    menu.onChangeOutput.subscribe((value: number) => {
+    ui.onChangeOutput.subscribe((value: number) => {
         error = 0;
         output = value;
         heater.output = output;
+        ui.onDataUpdated();
+        updateOtherUis(ui.id, true, false);
     });
 
-    menu.onChangeTunings.subscribe((value: ITunings) => {
+    ui.onChangeTunings.subscribe((value: ITunings) => {
         error = 0;
         output = 0;
         heater.output = output;
         updateTunings(value);
+        updateOtherUis(ui.id, true, true);
     });
 
-    menu.onChangeSettings.sub((value: ISettings) => {
+    ui.onChangeSettings.sub((value: ISettings) => {
         error = 0;
         output = 0;
         heater.output = output;
         updateSettings(value);
+        updateOtherUis(ui.id, true, true);
     });
 
-    menu.render();
+    ui.start();    
 };
 
 // cleanup
@@ -296,16 +338,36 @@ loadConfig()
     tempSensor.onTemperatureRead.subscribe(onTemperatureRead);
     tempSensor.start();
 
-    // socket.io web server
-    const http: Server = createServer(requestHandler);
-    const server: SocketIO.Server = SocketIO(http);
-    server.on("connection", (socket: SocketIO.Socket) => {
-        socket.on("message", (args: any[]) => {
-            console.log("message");
-        });
+    // socket.io web server/
+    const server: SocketIoUi = new SocketIoUi({
+        tunings: {
+            p: kP as number,
+            i: kI as number,
+            d: kD as number
+        },
+        setPoint: setPoint as number,
+        maxPower: maxPower as number,
+        maxTemp: maxTemp as number,
+        tcInterval: tcInterval as number,
+        cycleTime: cycleTime as number
     });
+    userInterfaces.push(server);
 
     // screen
-    initMenu();
+    const menu: Menu = new Menu({
+        tunings: {
+            p: kP as number,
+            i: kI as number,
+            d: kD as number
+        },
+        setPoint: setPoint as number,
+        maxPower: maxPower as number,
+        maxTemp: maxTemp as number,
+        tcInterval: tcInterval as number,
+        cycleTime: cycleTime as number
+    });
+    userInterfaces.push(menu);
+
+    userInterfaces.forEach((ui: BaseUi) => { initUi(ui); })
 });
 
