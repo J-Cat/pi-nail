@@ -11,7 +11,9 @@ export class Menu extends BaseUi {
     private screen: Blessed.Widgets.Screen;
     private grid: BlessedContrib.grid;
     private box: Blessed.Widgets.BoxElement;
-    private donut: BlessedContrib.Widgets.DonutElement;
+    //private donut: BlessedContrib.Widgets.DonutElement;
+    private pvBar: BlessedContrib.Widgets.BarElement;
+    private outputBar: BlessedContrib.Widgets.BarElement;
     private line: BlessedContrib.Widgets.LineElement;
     private series1!: BlessedContrib.Widgets.LineData;
     private series2!: BlessedContrib.Widgets.LineData;
@@ -47,18 +49,24 @@ export class Menu extends BaseUi {
 
         this.box = this.grid.set(0, 0, 6, 6, Blessed.box, {label: "piNail"});
 
-        this.donut = this.grid.set(0, 6, 6, 6, BlessedContrib.donut, {
-            radius: 6,
-            arcWidth: 1,
-            remainColor: "black",
-            yPadding: 0
+        this.pvBar = this.grid.set(0, 6, 6, 3, BlessedContrib.bar, {
+            label: "Temperature",
+            maxHeight: 100
         });
+        this.pvBar.options.barWidth = this.pvBar.canvasSize.width - 10;
+
+        this.outputBar = this.grid.set(0, 9, 6, 3, BlessedContrib.bar, {
+            label: "Power",
+            maxHeight: 100
+        });
+        this.outputBar.options.barWidth = this.outputBar.canvasSize.width - 10;
 
         this.line = this.grid.set(6, 0, 6, 12, BlessedContrib.line, {
             xLabelPadding: 0,
             xPadding: 0,
             wholeNumbersOnly: false,
-            label: "Set Point vs Present Value"
+            label: "Set Point vs Present Value",
+            showNthLabel: false
         });
 
         this.screen.key(["a", "m", "s"], (ch, key) => {
@@ -419,16 +427,19 @@ export class Menu extends BaseUi {
         }
         const outputRatio: number = this._data.output / this._settings.maxPower;
 
-        this.donut.setData([{
-            percent: (Math.round(tempRatio * 100) === 1 ? 0.1 : Math.round(tempRatio * 100)).toString(10),
-            label: `Temp (${Math.round(this._data.presentValue)}C / ${this._settings.setPoint}C)`,
-            color: tempColour
-        },
-        {
-            percent: (Math.round(outputRatio * 100) === 1 ? 0.1 : Math.round(outputRatio * 100)).toString(10),
-            label: `Power`
-        }]);
+        this.pvBar.options.barBgColor = tempColour;
+        this.pvBar.setData({
+            titles: [`${Math.round(this._data.presentValue)}C/${this._settings.setPoint}C`],
+            data: [Math.round(tempRatio * 100)]
+        });
+        this.outputBar.setData({
+            titles: [`${Math.round(outputRatio * 100).toString(10)}%`],
+            data: [Math.round(outputRatio * 100)]
+        });
+        //this.outputBar.style.barBgColor = 
 
+        //const currentMin: number = Math.max(...[...this.pastSetPoints, ...this.pastValues]);
+        //this.line.options.minY = currentMin;
         if (this.pastSetPoints.length > 0 && this.pastValues.length > 0) {
             this.series1 = {
                 title: "Present Value",
