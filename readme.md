@@ -25,9 +25,9 @@ The following are some of the key features of the project:
 
 ## Demo
 
-![pi-nail Main Screen](https://github.com/J-Cat/pi-nail/master/docs/images/pinail_blessed_contrib_main_screen.jpg)
+![pi-nail Main Screen](https://github.com/J-Cat/pi-nail/blob/master/docs/images/pinail_blessed_contrib_main_screen.jpg)
 
-![pi-nail Configuration Screen](https://github.com/J-Cat/pi-nail/master/docs/images/pinail_blessed_contrib_config_screen.jpg)
+![pi-nail Configuration Screen](https://github.com/J-Cat/pi-nail/blob/master/docs/images/pinail_blessed_contrib_config_screen.jpg)
 
 ### Configuring the application
 
