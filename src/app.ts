@@ -1,8 +1,12 @@
 import * as util from "util";
 import * as fs from "fs";
+import { createServer, Server } from "http";
+import * as SocketIO from "socket.io";
+
 import { AggregationType, TemperatureSensor, MultipleTemperatureSensor, Max6675, Mlx90614 } from "./temperature";
 import { PID, PIDIC, PIDBC } from "./ardupid";
 import { HeaterBase, PwmHeater, OnOffHeater } from "./heater";
+import { requestHandler } from "./service/requestHandler";
 import { Menu } from "./menu";
 
 import { IConfig } from "./models/IConfig";
@@ -291,6 +295,15 @@ loadConfig()
     // start reading temperatures
     tempSensor.onTemperatureRead.subscribe(onTemperatureRead);
     tempSensor.start();
+
+    // socket.io web server
+    const http: Server = createServer(requestHandler);
+    const server: SocketIO.Server = SocketIO(http);
+    server.on("connection", (socket: SocketIO.Socket) => {
+        socket.on("message", (args: any[]) => {
+            console.log("message");
+        });
+    });
 
     // screen
     initMenu();
