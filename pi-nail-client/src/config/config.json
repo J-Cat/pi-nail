@@ -1,0 +1,5 @@
+{
+    "baseRoutePath": "",
+    "baseURL": "http://localhost:3000",
+    "apiUrl": "http://172.19.0.35:3000"
+}

@@ -1,0 +1,211 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  color: white;
+  pointer-events: none;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  -ms-overflow-style: none;
+  background-color: #BBB;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.maincontainer {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.row {
+  left: 0px;
+  right: 0px;
+}
+
+.scroll-y {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: auto;
+}
+
+.header.row {
+  height: 50px;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  background-color: blue;
+  color:white;
+}
+
+.content {
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 70px;
+  margin: 1px;
+  padding: 0px;
+  position: absolute;
+}
+
+.footer {
+  left: 0px;
+  right: 0px;
+  position: absolute;
+  bottom: 0px;
+  height: 70px;
+  margin: 0px;
+}
+
+.navBar {
+  background-color: #AAA;  
+}
+
+.error {
+  color: red;
+  padding: 8px;
+}
+
+div.spinner {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+}
+
+div.list {
+  margin: 0px;
+  padding: 0px;
+}
+
+span.listItem div {
+  background-color: white;
+}
+
+.listItemPanel {
+  margin: 1px;
+  padding: 0px;
+}
+
+.detailItemPanel {
+  padding: 10px;
+  margin: 0px;
+}
+
+  .detailItemPanel h3 {
+      margin: 0px;
+  }
+
+.login {
+  padding: 10px;
+  text-align: center;
+}
+
+.Title {
+  margin: 0px;
+}
+
+.submitButton {
+  width: 90%;
+}
+
+div.rightMenu, .rightMenu, .rightMenu div {
+  padding: 0;
+}
+
+.material-icons {
+  text-rendering: optimizeLegibility;
+}
+
+.page {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.loading {
+  height: 40px;
+}
+
+.loadingMore {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+}
+
+.picturePanel {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.picture {
+  flex: 1; 
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/*.navBar {
+}
+
+.navItem  {
+}
+
+.navItem .material-icons {
+}*/
+
+.backgroundLogo {
+  background-size: contain;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAyMDAxMDkwNC8vRU4iDQogImh0dHA6Ly93d3cudzMub3JnL1RSLzIwMDEvUkVDLVNWRy0yMDAxMDkwNC9EVEQvc3ZnMTAuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNjUwLjAwMDAwMCA2NTAuMDAwMDAwIg0KIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPg0KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsNjUwLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSINCmZpbGw9IiNCQTU2MDAiIGZpbGwtb3BhY2l0eT0iMC4wNiIgc3Ryb2tlPSJub25lIj4NCjxwYXRoIGQ9Ik0xNjQ3IDQ1MzIgbC0xNTk3IC0xNTk3IDQ2OCAtNDY4IDQ2NyAtNDY3IDUwIDUwIDUwIDUwIC00MTUgNDE1DQotNDE1IDQxNSAxNDk4IDE0OTggMTQ5NyAxNDk3IDE0OTAgLTE0OTAgYzgxOSAtODE5IDE0OTAgLTE0OTQgMTQ5MCAtMTUwMCAwDQotNSAtMTg3IC0xOTcgLTQxNSAtNDI1IGwtNDE1IC00MTUgNTAgLTUwIDUwIC01MCA0NzAgNDcwIDQ3MCA0NzAgLTE1OTggMTU5OA0KLTE1OTcgMTU5NyAtMTU5OCAtMTU5OHoiLz4NCjxwYXRoIGQ9Ik0xOTc3IDQyMDIgbC0xMjY3IC0xMjY3IDEyNjggLTEyNjggMTI2NyAtMTI2NyAyOTMgMjkyIDI5MiAyOTMgLTQ4Nw0KNDg3IC00ODggNDg4IDQ4NSA0ODUgNDg1IDQ4NSAtNDg4IDQ4NyAtNDg3IDQ4OCA0OTAgNDkwIDQ5MCA0OTAgLTI5MyAyOTMNCi0yOTIgMjkyIC0xMjY4IC0xMjY4eiIvPg0KPHBhdGggZD0iTTM1NjAgNDMxNSBsLTQxNSAtNDE1IDQxMCAtNDEwIDQxMCAtNDEwIDQxNyA0MTcgNDE4IDQxOCAtNDA3IDQwNw0KYy0yMjUgMjI1IC00MTAgNDA4IC00MTMgNDA4IC0zIDAgLTE5MiAtMTg3IC00MjAgLTQxNXoiLz4NCjxwYXRoIGQ9Ik00NTQwIDMzMzUgbC00MTUgLTQxNSA0MTMgLTQxMyA0MTMgLTQxMiA0MTYgNDE4IDQxNyA0MTggLTQxMCA0MTANCmMtMjI1IDIyNSAtNDExIDQwOSAtNDE0IDQwOSAtMyAwIC0xOTIgLTE4NyAtNDIwIC00MTV6Ii8+DQo8cGF0aCBkPSJNMzU3MyAyMzYxIGwtNDAyIC00MDcgNDA5IC00MDkgNDEwIC00MTAgNDA1IDQwNSA0MDUgNDA1IC00MTIgNDExDQotNDEzIDQxMSAtNDAyIC00MDZ6Ii8+DQo8L2c+DQo8L3N2Zz4=');
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.snackbar {
+}
+
+.error {
+  color: red;
+}
+
+.version {
+  position: absolute;
+  top: -15px;
+  left: 8px;
+  font-size: 10px;
+  color: darkgray;
+}

@@ -57,7 +57,6 @@ let presentValue: number = 0;
 let _state: PIDState = PIDState.Stopped;
 
 // main process objects
-//let menu: Menu;
 let userInterfaces: BaseUi[] = [];
 let controller: PID;
 let heater: HeaterBase;
@@ -80,7 +79,7 @@ const onTemperatureRead: (source: TemperatureSensor, value: number) => void = (s
             calculateFilteredSetPoint();
             error = filteredSetPoint - presentValue;
             output = controller.compute(error);
-            //menu.debug(`S${setPoint}-F${filteredSetPoint}-I${initialSetPoint}-O${output}`);
+            // menu.debug(`S${setPoint}-F${filteredSetPoint}-I${initialSetPoint}-O${output}`);
             heater.output = output;
             break;
 
@@ -187,7 +186,7 @@ const saveConfig: () => void = () => {
     );
 };
 
-const updateOtherUis = (id: string, isDataUpdate: boolean, isSettingsUpdate: boolean): void =>  {
+const updateOtherUis:(id: string, isDataUpdate: boolean, isSettingsUpdate: boolean) => void = (id, isDataUpdate, isSettingsUpdate) => {
     userInterfaces.forEach((otherUi: BaseUi) => {
         if (otherUi.id !== id) {
             if (isDataUpdate) {
@@ -277,7 +276,7 @@ const initUi: (ui: BaseUi) => void = (ui) => {
         updateOtherUis(ui.id, true, true);
     });
 
-    ui.start();    
+    ui.start();
 };
 
 // cleanup
@@ -368,6 +367,6 @@ loadConfig()
     });
     userInterfaces.push(menu);
 
-    userInterfaces.forEach((ui: BaseUi) => { initUi(ui); })
+    userInterfaces.forEach((ui: BaseUi) => { initUi(ui); });
 });
 
