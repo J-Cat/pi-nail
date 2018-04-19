@@ -1,5 +1,5 @@
-import { Menu } from "./menu";
+import { ConsoleUi } from "./consoleUi";
 import { SocketIoUi } from "./socketIoUi";
 import { requestHandler } from "./requestHandler";
 
-export { Menu, SocketIoUi, requestHandler };
+export { ConsoleUi, SocketIoUi, requestHandler };

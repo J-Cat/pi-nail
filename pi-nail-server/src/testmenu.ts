@@ -1,6 +1,7 @@
-import { Menu } from "./ui/menu";
+import { ConsoleUi } from "./ui/consoleUi";
+import { PIDState } from "./models";
 
-let menu: Menu = new Menu({
+let menu: ConsoleUi = new ConsoleUi({
     tunings: {
         p: 8,
         i: 2,
@@ -10,7 +11,8 @@ let menu: Menu = new Menu({
     maxPower: 100,
     maxTemp: 250,
     tcInterval: 0.25,
-    cycleTime: 250
+    cycleTime: 250,
+    state: PIDState.Stopped
 });
 menu.data = {
     presentValue: 170,

@@ -1,5 +1,6 @@
 import { IMessage } from './IMessage';
-import { IPiNailAction } from './IPiNailAction';
 import { IPiNailState } from './IPiNailState';
+import { PIDState } from './PIDState';
+import { PiNailActionTypes } from './piNailActionTypes';
 
-export { IMessage, IPiNailAction, IPiNailState };
+export { IMessage, IPiNailState, PIDState, PiNailActionTypes };

@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "pi-Nail",
+  "name": "pi-Nail - Raspberry Pi e-Nail Controller",
   "icons": [
     {
       "src": "favicon.ico",

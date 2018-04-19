@@ -1,5 +1,8 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+# symlink folder for shared node_modules
+/src/models/shared/
+
 # dependencies
 /node_modules
 

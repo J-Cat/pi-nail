@@ -1,26 +1,23 @@
 import * as SocketIOClient from "socket.io-client";
-import { PiNailMessages } from "./ui/piNailMessages";
+import { PiNailActionTypes } from "./ui/piNailActionTypes";
 import { IPiNailData } from "./models/IPiNailData";
 import { ISettings } from "./models/ISettings";
 import { setTimeout } from "timers";
+import { IPiNailAction } from "./models";
 
-const client: SocketIOClient.Socket = SocketIOClient("http://172.19.0.35:3000");
+try {
+const client: SocketIOClient.Socket = SocketIOClient("http://172.19.0.35:3000", { path: '/sio' });
 
-client.on(PiNailMessages.ON_SETTINGS, (data: IPiNailData) => {
+client.on('action', (action: IPiNailAction) => {
     console.log("update data");
-    console.log(`Temperature = ${data.presentValue}, Output = ${data.output}`); 
-});
-
-client.on(PiNailMessages.UPDATE_SETTINGS, (settings: ISettings) => {
-    console.log("update settings");
-    console.log(`Set Point = ${settings.setPoint}`);
+    console.log(`Temperature = ${action.data!.presentValue}, Output = ${action.data!.output}`); 
 });
 
 client.on("connect", () => {
     console.log("connected");
 
     setTimeout(() => {
-        client.emit(PiNailMessages.UPDATE_OUTPUT, 0.7);
+        client.emit(PiNailActionTypes.SERVER_UPDATE_OUTPUT, 0.7);
     }, 5000);
 });
 
@@ -33,3 +30,10 @@ client.on("connect_error", (err: any) => {
 });
 
 client.connect();
+} catch (exception) {
+    console.log(exception);
+}
+
+setInterval(() => {
+    console.log("tick");
+}, 2000);

@@ -11,7 +11,6 @@ export abstract class BaseUi {
     protected pastSetPoints: number[] = [];
     protected xOffset: number = 0;
 
-    protected _state: PIDState = PIDState.Stopped;
     protected _settings: ISettings;
     protected _data: IPiNailData = {
         presentValue: 0,

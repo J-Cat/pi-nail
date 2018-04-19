@@ -7,7 +7,7 @@ import { ITunings } from "../models/ITunings";
 import { ISettings } from "../models/ISettings";
 import { BaseUi } from "./baseUi";
 
-export class Menu extends BaseUi {
+export class ConsoleUi extends BaseUi {
     private screen: Blessed.Widgets.Screen;
     private grid: BlessedContrib.grid;
     private box: Blessed.Widgets.BoxElement;
@@ -72,18 +72,18 @@ export class Menu extends BaseUi {
         this.screen.key(["a", "m", "s"], (ch, key) => {
             switch (key.name) {
                 case "a":
-                    this._state = PIDState.Auto;
+                    this._settings.state = PIDState.Auto;
                     break;
 
                 case "m":
-                    this._state = PIDState.Manual;
+                    this._settings.state = PIDState.Manual;
                     break;
 
                 case "s":
-                    this._state = PIDState.Stopped;
+                    this._settings.state = PIDState.Stopped;
                     break;
             }
-            this._onChangeState.dispatch(this._state);
+            this._onChangeState.dispatch(this._settings.state);
             this.render();
         });
 
@@ -297,7 +297,8 @@ export class Menu extends BaseUi {
                         maxPower:  parseFloat(out.maxPower),
                         maxTemp: parseFloat(out.maxTemp),
                         tcInterval:  parseFloat(out.tcInterval),
-                        cycleTime:  parseFloat(out.cycleTime)
+                        cycleTime:  parseFloat(out.cycleTime),
+                        state: this._settings.state
                     };
                     this._settings = newSettings;
                     this._onChangeSettings.dispatch(this._settings);
@@ -338,10 +339,10 @@ export class Menu extends BaseUi {
             if (this._inConfig) {
                 return;
             }
-            if (this._state === PIDState.Auto) {
+            if (this._settings.state === PIDState.Auto || this._settings.state === PIDState.Stopped) {
                 this._settings.setPoint = Math.min(this._settings.setPoint + 1, this._settings.maxTemp);
                 this._onChangeSetPoint.dispatch(this._settings.setPoint);
-            } else if (this._state === PIDState.Manual) {
+            } else if (this._settings.state === PIDState.Manual) {
                 const newOutput: number = Math.min(this._data.output + 5, this._settings.maxPower);
                 this._onChangeOutput.dispatch(newOutput);
                 this._data.output = newOutput;
@@ -353,10 +354,10 @@ export class Menu extends BaseUi {
             if (this._inConfig) {
                 return;
             }
-            if (this._state === PIDState.Auto) {
+            if (this._settings.state === PIDState.Auto || this._settings.state === PIDState.Stopped) {
                 this._settings.setPoint = Math.max(this._settings.setPoint - 1, 0);
                 this._onChangeSetPoint.dispatch(this._settings.setPoint);
-            } else if (this._state === PIDState.Manual) {
+            } else if (this._settings.state === PIDState.Manual) {
                 const newOutput: number = Math.max(this._data.output - 5, 0);
                 this._onChangeOutput.dispatch(newOutput);
                 this._data.output = newOutput;
@@ -368,10 +369,10 @@ export class Menu extends BaseUi {
             if (this._inConfig) {
                 return;
             }
-            if (this._state === PIDState.Auto) {
+            if (this._settings.state === PIDState.Auto || this._settings.state === PIDState.Stopped) {
                 this._settings.setPoint = Math.min(this._settings.setPoint + 5, this._settings.maxTemp);
                 this._onChangeSetPoint.dispatch(this._settings.setPoint);
-            } else if (this._state === PIDState.Manual) {
+            } else if (this._settings.state === PIDState.Manual) {
                 const newOutput: number = Math.min(this._data.output + 10, this._settings.maxPower);
                 this._onChangeOutput.dispatch(newOutput);
                 this._data.output = newOutput;
@@ -383,10 +384,10 @@ export class Menu extends BaseUi {
             if (this._inConfig) {
                 return;
             }
-            if (this._state === PIDState.Auto) {
+            if (this._settings.state === PIDState.Auto || this._settings.state === PIDState.Stopped) {
                 this._settings.setPoint = Math.max(this._settings.setPoint - 5, 0);
                 this._onChangeSetPoint.dispatch(this._settings.setPoint);
-            } else if (this._state === PIDState.Manual) {
+            } else if (this._settings.state === PIDState.Manual) {
                 const newOutput: number = Math.max(this._data.output - 10, 0);
                 this._onChangeOutput.dispatch(newOutput);
                 this._data.output = newOutput;
@@ -408,7 +409,7 @@ export class Menu extends BaseUi {
             + "<q> - Quit\n\n"
             + "<up/down> - Temperature +/- 1\n"
             + "<page up/down> - Temperature +/- 5\n\n"
-            + `State: ${this._state}, `
+            + `State: ${this._settings.state}, `
             + `P = ${this._settings.tunings.p}, `
             + `I = ${this._settings.tunings.i}, `
             + `D = ${this._settings.tunings.d}`

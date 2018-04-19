@@ -11,6 +11,8 @@
     "no-var-requires": false,
     "no-namespace": false,
     "no-empty-interface": false,
-    "jsx-no-lambda": false
+    "jsx-no-lambda": false,
+    "object-literal-sort-keys": false,
+    "variable-name": ["allow-leading-underscore"]
   }
 }

@@ -2,12 +2,9 @@ import * as util from "util";
 import * as SocketIO from "socket.io";
 import { throttle } from "lodash";
 import { createServer, Server } from "http";
-import { IPiNailData } from "../models/IPiNailData";
-import { PiNailMessages } from "./piNailMessages";
-import { ISettings } from "../models/ISettings";
+import { PiNailActionTypes } from "./piNailActionTypes";
+import { IPiNailAction, IPiNailData, ISettings, ITunings, PIDState } from "../models";
 import { ISimpleEvent, SimpleEventDispatcher } from "strongly-typed-events";
-import { ITunings } from "../models/ITunings";
-import { PIDState } from "../models/PIDState";
 import { BaseUi } from "./baseUi";
 import { requestHandler } from "./requestHandler";
 
@@ -33,45 +30,67 @@ export class SocketIoUi extends BaseUi {
         super(settings);
 
         this._http = createServer(requestHandler);
-        this._server = SocketIO(this._http);
+        this._server = SocketIO(this._http, { path: '/sio' });
         this._server.on("connection", this.onConnection);
+        this._server.on("connectionerror", (err: Error) => {
+            console.log(err.message);
+        });
     }
 
     private onConnection = (socket: SocketIO.Socket): void => {
         this._socket = socket;
-        socket.on(PiNailMessages.GET_SETTINGS, this.getSettings);
-        socket.on(PiNailMessages.UPDATE_OUTPUT, this.updateOutput);
-        socket.on(PiNailMessages.UPDATE_SET_POINT, this.updateSetPoint);
-        socket.on(PiNailMessages.UPDATE_SETTINGS, this.updateSettings);
-        socket.on(PiNailMessages.UPDATE_TUNINGS, this.updateTunings);
-    };
+        socket.on('action', (action: IPiNailAction) => {
+            switch (action.type) {
+                case PiNailActionTypes.SERVER_GET_SETTINGS:
+                    this.emitSettings(this._settings);
+                    break;
 
-    emitData = (data: IPiNailData): void => {
-        this._data = data;
-        if (util.isNullOrUndefined(this._socket)) {
-            return;
-        }
+                case PiNailActionTypes.SERVER_UPDATE_SETTINGS:
+                    this.updateSettings(action.settings!);
+                    break;
+                
+                case PiNailActionTypes.SERVER_UPDATE_SETPOINT:
+                    this.updateSetPoint(action.value!);
+                    break;
 
-        throttle(() => {
-            this._socket.emit(PiNailMessages.ON_DATA, data);
-        }, 1000);
-    };
+                case PiNailActionTypes.SERVER_UPDATE_OUTPUT:
+                    this.updateOutput(action.value!);
+                    break;
 
-    emitSettings = (settings: ISettings): void => {
-        this._settings = settings;
-        if (util.isNullOrUndefined(this._socket)) {
-            return;
-        }
+                case PiNailActionTypes.SERVER_UPDATE_TUNINGS:
+                    this.updateTunings(action.settings!.tunings);
+                    break;
 
-        throttle(() => {
-            this._socket.emit(PiNailMessages.ON_SETTINGS, settings);
+                case PiNailActionTypes.SERVER_UPDATE_STATE:
+                    this.updateState(action.state!);
+                    break;
+                }
         });
     };
 
-    getSettings = (): ISettings => {
-        return this._settings;
-    }
+    emitData: (data: IPiNailData) => void = throttle(
+        (data: IPiNailData): void => {
+            if (util.isNullOrUndefined(this._socket)) {
+                return;
+            }
 
+            this._socket.emit('action', { type: PiNailActionTypes.CLIENT_UPDATE_DATA, data: data });
+        },
+        1000
+    );
+
+    emitSettings: (settings: ISettings) => void = throttle(
+        (settings: ISettings): void => {
+            this._settings = settings;
+            if (util.isNullOrUndefined(this._socket)) {
+                return;
+            }
+
+            this._socket.emit('action', { type: PiNailActionTypes.CLIENT_UPDATE_SETTINGS, settings });
+        },
+        1000
+    );
+    
     updateOutput = (value: number): void => {
         this._onChangeOutput.dispatch(value);
         this._data.output = value;
@@ -94,6 +113,6 @@ export class SocketIoUi extends BaseUi {
 
     updateState = (value: PIDState): void => {
         this._onChangeState.dispatch(value);
-        this._state = value;
+        this._settings.state = value;
     }
 }

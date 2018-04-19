@@ -1,4 +1,5 @@
 import { ITunings } from "./ITunings";
+import { PIDState } from "./PIDState";
 
 export interface ISettings {
     tunings: ITunings;
@@ -7,4 +8,5 @@ export interface ISettings {
     maxTemp: number;
     tcInterval: number;
     cycleTime: number;
+    state: PIDState;
 }

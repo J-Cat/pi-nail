@@ -9,12 +9,10 @@
   display: flex;
   align-items: center;
   color: white;
-  pointer-events: none;
-}
+  pointer-events: none; }
 
 html {
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 html,
 body {
@@ -24,37 +22,31 @@ body {
   width: 100%;
   overflow: hidden;
   -ms-overflow-style: none;
-  background-color: #BBB;
-}
+  background-color: #BBB; }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
-}
+  box-sizing: inherit; }
 
 .maincontainer {
   height: 100%;
   width: 100%;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .container {
   height: 100%;
-  width: 100%;
-}
+  width: 100%; }
 
 .row {
   left: 0px;
-  right: 0px;
-}
+  right: 0px; }
 
 .scroll-y {
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: auto;
-}
+  -ms-overflow-style: auto; }
 
 .header.row {
   height: 50px;
@@ -63,8 +55,7 @@ body {
   right: 0px;
   top: 0px;
   background-color: blue;
-  color:white;
-}
+  color: white; }
 
 .content {
   left: 0px;
@@ -73,8 +64,7 @@ body {
   bottom: 70px;
   margin: 1px;
   padding: 0px;
-  position: absolute;
-}
+  position: absolute; }
 
 .footer {
   left: 0px;
@@ -82,17 +72,14 @@ body {
   position: absolute;
   bottom: 0px;
   height: 70px;
-  margin: 0px;
-}
+  margin: 0px; }
 
 .navBar {
-  background-color: #AAA;  
-}
+  background-color: #AAA; }
 
 .error {
   color: red;
-  padding: 8px;
-}
+  padding: 8px; }
 
 div.spinner {
   margin: auto;
@@ -103,109 +90,405 @@ div.spinner {
   right: 0;
   width: 60px;
   height: 60px;
-  text-align: center;
-}
+  text-align: center; }
 
 div.list {
   margin: 0px;
-  padding: 0px;
-}
+  padding: 0px; }
 
 span.listItem div {
-  background-color: white;
-}
+  background-color: white; }
 
 .listItemPanel {
   margin: 1px;
-  padding: 0px;
-}
+  padding: 0px; }
 
 .detailItemPanel {
   padding: 10px;
-  margin: 0px;
-}
+  margin: 0px; }
 
-  .detailItemPanel h3 {
-      margin: 0px;
-  }
+.detailItemPanel h3 {
+  margin: 0px; }
 
 .login {
   padding: 10px;
-  text-align: center;
-}
+  text-align: center; }
 
 .Title {
-  margin: 0px;
-}
+  margin: 0px; }
 
 .submitButton {
-  width: 90%;
-}
+  width: 90%; }
 
 div.rightMenu, .rightMenu, .rightMenu div {
-  padding: 0;
-}
+  padding: 0; }
 
 .material-icons {
-  text-rendering: optimizeLegibility;
-}
+  text-rendering: optimizeLegibility; }
 
 .page {
   height: 100%;
   width: 100%;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .loading {
-  height: 40px;
-}
+  height: 40px; }
 
 .loadingMore {
   height: 40px;
   width: 40px;
-  text-align: center;
-}
+  text-align: center; }
 
 .picturePanel {
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-}
+  flex-wrap: nowrap; }
 
 .picture {
-  flex: 1; 
+  flex: 1;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center center;
-}
+  background-position: center center; }
 
 /*.navBar {
-}
-
-.navItem  {
-}
-
-.navItem .material-icons {
-}*/
-
+  }
+  
+  .navItem  {
+  }
+  
+  .navItem .material-icons {
+  }*/
 .backgroundLogo {
   background-size: contain;
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAyMDAxMDkwNC8vRU4iDQogImh0dHA6Ly93d3cudzMub3JnL1RSLzIwMDEvUkVDLVNWRy0yMDAxMDkwNC9EVEQvc3ZnMTAuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNjUwLjAwMDAwMCA2NTAuMDAwMDAwIg0KIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPg0KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsNjUwLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSINCmZpbGw9IiNCQTU2MDAiIGZpbGwtb3BhY2l0eT0iMC4wNiIgc3Ryb2tlPSJub25lIj4NCjxwYXRoIGQ9Ik0xNjQ3IDQ1MzIgbC0xNTk3IC0xNTk3IDQ2OCAtNDY4IDQ2NyAtNDY3IDUwIDUwIDUwIDUwIC00MTUgNDE1DQotNDE1IDQxNSAxNDk4IDE0OTggMTQ5NyAxNDk3IDE0OTAgLTE0OTAgYzgxOSAtODE5IDE0OTAgLTE0OTQgMTQ5MCAtMTUwMCAwDQotNSAtMTg3IC0xOTcgLTQxNSAtNDI1IGwtNDE1IC00MTUgNTAgLTUwIDUwIC01MCA0NzAgNDcwIDQ3MCA0NzAgLTE1OTggMTU5OA0KLTE1OTcgMTU5NyAtMTU5OCAtMTU5OHoiLz4NCjxwYXRoIGQ9Ik0xOTc3IDQyMDIgbC0xMjY3IC0xMjY3IDEyNjggLTEyNjggMTI2NyAtMTI2NyAyOTMgMjkyIDI5MiAyOTMgLTQ4Nw0KNDg3IC00ODggNDg4IDQ4NSA0ODUgNDg1IDQ4NSAtNDg4IDQ4NyAtNDg3IDQ4OCA0OTAgNDkwIDQ5MCA0OTAgLTI5MyAyOTMNCi0yOTIgMjkyIC0xMjY4IC0xMjY4eiIvPg0KPHBhdGggZD0iTTM1NjAgNDMxNSBsLTQxNSAtNDE1IDQxMCAtNDEwIDQxMCAtNDEwIDQxNyA0MTcgNDE4IDQxOCAtNDA3IDQwNw0KYy0yMjUgMjI1IC00MTAgNDA4IC00MTMgNDA4IC0zIDAgLTE5MiAtMTg3IC00MjAgLTQxNXoiLz4NCjxwYXRoIGQ9Ik00NTQwIDMzMzUgbC00MTUgLTQxNSA0MTMgLTQxMyA0MTMgLTQxMiA0MTYgNDE4IDQxNyA0MTggLTQxMCA0MTANCmMtMjI1IDIyNSAtNDExIDQwOSAtNDE0IDQwOSAtMyAwIC0xOTIgLTE4NyAtNDIwIC00MTV6Ii8+DQo8cGF0aCBkPSJNMzU3MyAyMzYxIGwtNDAyIC00MDcgNDA5IC00MDkgNDEwIC00MTAgNDA1IDQwNSA0MDUgNDA1IC00MTIgNDExDQotNDEzIDQxMSAtNDAyIC00MDZ6Ii8+DQo8L2c+DQo8L3N2Zz4=');
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAyMDAxMDkwNC8vRU4iDQogImh0dHA6Ly93d3cudzMub3JnL1RSLzIwMDEvUkVDLVNWRy0yMDAxMDkwNC9EVEQvc3ZnMTAuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNjUwLjAwMDAwMCA2NTAuMDAwMDAwIg0KIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPg0KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsNjUwLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSINCmZpbGw9IiNCQTU2MDAiIGZpbGwtb3BhY2l0eT0iMC4wNiIgc3Ryb2tlPSJub25lIj4NCjxwYXRoIGQ9Ik0xNjQ3IDQ1MzIgbC0xNTk3IC0xNTk3IDQ2OCAtNDY4IDQ2NyAtNDY3IDUwIDUwIDUwIDUwIC00MTUgNDE1DQotNDE1IDQxNSAxNDk4IDE0OTggMTQ5NyAxNDk3IDE0OTAgLTE0OTAgYzgxOSAtODE5IDE0OTAgLTE0OTQgMTQ5MCAtMTUwMCAwDQotNSAtMTg3IC0xOTcgLTQxNSAtNDI1IGwtNDE1IC00MTUgNTAgLTUwIDUwIC01MCA0NzAgNDcwIDQ3MCA0NzAgLTE1OTggMTU5OA0KLTE1OTcgMTU5NyAtMTU5OCAtMTU5OHoiLz4NCjxwYXRoIGQ9Ik0xOTc3IDQyMDIgbC0xMjY3IC0xMjY3IDEyNjggLTEyNjggMTI2NyAtMTI2NyAyOTMgMjkyIDI5MiAyOTMgLTQ4Nw0KNDg3IC00ODggNDg4IDQ4NSA0ODUgNDg1IDQ4NSAtNDg4IDQ4NyAtNDg3IDQ4OCA0OTAgNDkwIDQ5MCA0OTAgLTI5MyAyOTMNCi0yOTIgMjkyIC0xMjY4IC0xMjY4eiIvPg0KPHBhdGggZD0iTTM1NjAgNDMxNSBsLTQxNSAtNDE1IDQxMCAtNDEwIDQxMCAtNDEwIDQxNyA0MTcgNDE4IDQxOCAtNDA3IDQwNw0KYy0yMjUgMjI1IC00MTAgNDA4IC00MTMgNDA4IC0zIDAgLTE5MiAtMTg3IC00MjAgLTQxNXoiLz4NCjxwYXRoIGQ9Ik00NTQwIDMzMzUgbC00MTUgLTQxNSA0MTMgLTQxMyA0MTMgLTQxMiA0MTYgNDE4IDQxNyA0MTggLTQxMCA0MTANCmMtMjI1IDIyNSAtNDExIDQwOSAtNDE0IDQwOSAtMyAwIC0xOTIgLTE4NyAtNDIwIC00MTV6Ii8+DQo8cGF0aCBkPSJNMzU3MyAyMzYxIGwtNDAyIC00MDcgNDA5IC00MDkgNDEwIC00MTAgNDA1IDQwNSA0MDUgNDA1IC00MTIgNDExDQotNDEzIDQxMSAtNDAyIC00MDZ6Ii8+DQo8L2c+DQo8L3N2Zz4=");
   background-repeat: no-repeat;
-  background-position: center center;
-}
-
-.snackbar {
-}
+  background-position: center center; }
 
 .error {
-  color: red;
-}
+  color: red; }
 
 .version {
   position: absolute;
   top: -15px;
   left: 8px;
   font-size: 10px;
-  color: darkgray;
-}
+  color: darkgray; }
+
+.routeContent {
+  position: absolute; }
+
+.homePageContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column; }
+  @media screen and (orientation: landscape) {
+    .homePageContainer {
+      flex-direction: row; } }
+
+.temperatureContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column; }
+  @media screen and (orientation: landscape) {
+    .temperatureContainer {
+      width: 50%;
+      height: 100%; } }
+  @media screen and (orientation: portrait) {
+    .temperatureContainer {
+      width: 100%;
+      height: 50%; } }
+
+.setPointContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center; }
+
+.setPointContainer div::after, .setPointContainer div::before {
+  border: none !important;
+  background: none !important; }
+
+.tempSymbol {
+  flex: 1;
+  text-align: left; }
+
+.tempText {
+  color: gray; }
+  @media screen and (min-aspect-ratio: 30 / 30) {
+    .tempText {
+      font-size: 20vw; } }
+  @media screen and (min-aspect-ratio: 31 / 30) {
+    .tempText {
+      font-size: 19.5vw; } }
+  @media screen and (min-aspect-ratio: 32 / 30) {
+    .tempText {
+      font-size: 19vw; } }
+  @media screen and (min-aspect-ratio: 33 / 30) {
+    .tempText {
+      font-size: 18.5vw; } }
+  @media screen and (min-aspect-ratio: 34 / 30) {
+    .tempText {
+      font-size: 18vw; } }
+  @media screen and (min-aspect-ratio: 35 / 30) {
+    .tempText {
+      font-size: 17.5vw; } }
+  @media screen and (min-aspect-ratio: 36 / 30) {
+    .tempText {
+      font-size: 17vw; } }
+  @media screen and (min-aspect-ratio: 37 / 30) {
+    .tempText {
+      font-size: 16.5vw; } }
+  @media screen and (min-aspect-ratio: 38 / 30) {
+    .tempText {
+      font-size: 16vw; } }
+  @media screen and (min-aspect-ratio: 39 / 30) {
+    .tempText {
+      font-size: 15.5vw; } }
+  @media screen and (min-aspect-ratio: 40 / 30) {
+    .tempText {
+      font-size: 15vw; } }
+  @media screen and (min-aspect-ratio: 41 / 30) {
+    .tempText {
+      font-size: 14.5vw; } }
+  @media screen and (min-aspect-ratio: 42 / 30) {
+    .tempText {
+      font-size: 14vw; } }
+  @media screen and (min-aspect-ratio: 43 / 30) {
+    .tempText {
+      font-size: 13.5vw; } }
+  @media screen and (min-aspect-ratio: 44 / 30) {
+    .tempText {
+      font-size: 13vw; } }
+  @media screen and (min-aspect-ratio: 45 / 30) {
+    .tempText {
+      font-size: 12.5vw; } }
+  @media screen and (min-aspect-ratio: 46 / 30) {
+    .tempText {
+      font-size: 12vw; } }
+  @media screen and (min-aspect-ratio: 47 / 30) {
+    .tempText {
+      font-size: 11.5vw; } }
+  @media screen and (min-aspect-ratio: 48 / 30) {
+    .tempText {
+      font-size: 11vw; } }
+  @media screen and (min-aspect-ratio: 49 / 30) {
+    .tempText {
+      font-size: 10.5vw; } }
+  @media screen and (min-aspect-ratio: 50 / 30) {
+    .tempText {
+      font-size: 10vw; } }
+  @media screen and (min-aspect-ratio: 51 / 30) {
+    .tempText {
+      font-size: 9.5vw; } }
+  @media screen and (min-aspect-ratio: 52 / 30) {
+    .tempText {
+      font-size: 9vw; } }
+  @media screen and (min-aspect-ratio: 53 / 30) {
+    .tempText {
+      font-size: 8.5vw; } }
+  @media screen and (min-aspect-ratio: 54 / 30) {
+    .tempText {
+      font-size: 8vw; } }
+  @media screen and (min-aspect-ratio: 55 / 30) {
+    .tempText {
+      font-size: 7.5vw; } }
+  @media screen and (min-aspect-ratio: 56 / 30) {
+    .tempText {
+      font-size: 7vw; } }
+  @media screen and (min-aspect-ratio: 57 / 30) {
+    .tempText {
+      font-size: 6.5vw; } }
+  @media screen and (min-aspect-ratio: 58 / 30) {
+    .tempText {
+      font-size: 6vw; } }
+  @media screen and (min-aspect-ratio: 59 / 30) {
+    .tempText {
+      font-size: 5.5vw; } }
+  @media screen and (min-aspect-ratio: 60 / 30) {
+    .tempText {
+      font-size: 5vw; } }
+  @media screen and (min-aspect-ratio: 2 / 1) {
+    .tempText {
+      font-size: 48px; } }
+  @media screen and (max-aspect-ratio: 1 / 1) {
+    .tempText {
+      font-size: 20vw; } }
+  @media screen and (max-aspect-ratio: 1 / 2) {
+    .tempText {
+      font-size: 48px; } }
+
+.setPointContainer .setPointInput {
+  flex: 1; }
+
+.setPointInput input {
+  margin: 0;
+  padding: 0;
+  color: gray;
+  text-align: right; }
+  @media screen and (min-aspect-ratio: 30 / 30) {
+    .setPointInput input {
+      font-size: 20vw; } }
+  @media screen and (min-aspect-ratio: 31 / 30) {
+    .setPointInput input {
+      font-size: 19.5vw; } }
+  @media screen and (min-aspect-ratio: 32 / 30) {
+    .setPointInput input {
+      font-size: 19vw; } }
+  @media screen and (min-aspect-ratio: 33 / 30) {
+    .setPointInput input {
+      font-size: 18.5vw; } }
+  @media screen and (min-aspect-ratio: 34 / 30) {
+    .setPointInput input {
+      font-size: 18vw; } }
+  @media screen and (min-aspect-ratio: 35 / 30) {
+    .setPointInput input {
+      font-size: 17.5vw; } }
+  @media screen and (min-aspect-ratio: 36 / 30) {
+    .setPointInput input {
+      font-size: 17vw; } }
+  @media screen and (min-aspect-ratio: 37 / 30) {
+    .setPointInput input {
+      font-size: 16.5vw; } }
+  @media screen and (min-aspect-ratio: 38 / 30) {
+    .setPointInput input {
+      font-size: 16vw; } }
+  @media screen and (min-aspect-ratio: 39 / 30) {
+    .setPointInput input {
+      font-size: 15.5vw; } }
+  @media screen and (min-aspect-ratio: 40 / 30) {
+    .setPointInput input {
+      font-size: 15vw; } }
+  @media screen and (min-aspect-ratio: 41 / 30) {
+    .setPointInput input {
+      font-size: 14.5vw; } }
+  @media screen and (min-aspect-ratio: 42 / 30) {
+    .setPointInput input {
+      font-size: 14vw; } }
+  @media screen and (min-aspect-ratio: 43 / 30) {
+    .setPointInput input {
+      font-size: 13.5vw; } }
+  @media screen and (min-aspect-ratio: 44 / 30) {
+    .setPointInput input {
+      font-size: 13vw; } }
+  @media screen and (min-aspect-ratio: 45 / 30) {
+    .setPointInput input {
+      font-size: 12.5vw; } }
+  @media screen and (min-aspect-ratio: 46 / 30) {
+    .setPointInput input {
+      font-size: 12vw; } }
+  @media screen and (min-aspect-ratio: 47 / 30) {
+    .setPointInput input {
+      font-size: 11.5vw; } }
+  @media screen and (min-aspect-ratio: 48 / 30) {
+    .setPointInput input {
+      font-size: 11vw; } }
+  @media screen and (min-aspect-ratio: 49 / 30) {
+    .setPointInput input {
+      font-size: 10.5vw; } }
+  @media screen and (min-aspect-ratio: 50 / 30) {
+    .setPointInput input {
+      font-size: 10vw; } }
+  @media screen and (min-aspect-ratio: 51 / 30) {
+    .setPointInput input {
+      font-size: 9.5vw; } }
+  @media screen and (min-aspect-ratio: 52 / 30) {
+    .setPointInput input {
+      font-size: 9vw; } }
+  @media screen and (min-aspect-ratio: 53 / 30) {
+    .setPointInput input {
+      font-size: 8.5vw; } }
+  @media screen and (min-aspect-ratio: 54 / 30) {
+    .setPointInput input {
+      font-size: 8vw; } }
+  @media screen and (min-aspect-ratio: 55 / 30) {
+    .setPointInput input {
+      font-size: 7.5vw; } }
+  @media screen and (min-aspect-ratio: 56 / 30) {
+    .setPointInput input {
+      font-size: 7vw; } }
+  @media screen and (min-aspect-ratio: 57 / 30) {
+    .setPointInput input {
+      font-size: 6.5vw; } }
+  @media screen and (min-aspect-ratio: 58 / 30) {
+    .setPointInput input {
+      font-size: 6vw; } }
+  @media screen and (min-aspect-ratio: 59 / 30) {
+    .setPointInput input {
+      font-size: 5.5vw; } }
+  @media screen and (min-aspect-ratio: 60 / 30) {
+    .setPointInput input {
+      font-size: 5vw; } }
+  @media screen and (min-aspect-ratio: 2 / 1) {
+    .setPointInput input {
+      font-size: 48px; } }
+  @media screen and (max-aspect-ratio: 1 / 1) {
+    .setPointInput input {
+      font-size: 20vw; } }
+  @media screen and (max-aspect-ratio: 1 / 2) {
+    .setPointInput input {
+      font-size: 48px; } }
+
+.presentValueContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center; }
+
+.presentValueContainer .presentValue {
+  flex: 1;
+  text-align: right; }
+
+.stateContainer {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end; }
+  @media screen and (orientation: landscape) {
+    .stateContainer {
+      flex-direction: column; } }
+  @media screen and (orientation: portrait) {
+    .stateContainer {
+      flex-direction: row; } }
+
+.stateGaugeContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.stateButtonContainer {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; }
+  @media screen and (orientation: landscape) {
+    .stateButtonContainer {
+      flex-direction: row; } }
+  @media screen and (orientation: portrait) {
+    .stateButtonContainer {
+      flex-direction: column; } }
+
+.stateButton {
+  margin: 0;
+  padding: 0;
+  height: unset !important; }
+
+.topGaugeContainer {
+  width: 100%;
+  height: 100%; }
+
+.gaugeContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; }

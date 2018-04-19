@@ -7,8 +7,7 @@ import { AggregationType, TemperatureSensor, MultipleTemperatureSensor, Max6675,
 import { PID, PIDIC, PIDBC } from "./ardupid";
 import { HeaterBase, PwmHeater, OnOffHeater } from "./heater";
 import { requestHandler } from "./ui";
-import { SocketIoUi } from "./ui/socketIoUi";
-import { Menu } from "./ui/menu";
+import { ConsoleUi, SocketIoUi } from "./ui";
 
 import { IConfig } from "./models/IConfig";
 import { PIDState } from "./models/PIDState";
@@ -19,6 +18,7 @@ import { ISettings } from "./models/ISettings";
 import { BaseUi } from "./ui/baseUi";
 
 // constants
+const runAsService: boolean = false; // if true disables console UI
 const onOffHeaterPin: number = 12; // heater GPIO # for relay
 const pwmHeaterPin: number = 13;  // heater GPIO # for PWM
 const tcBus: number = 1; // thermocouple bus #
@@ -71,7 +71,7 @@ const onTemperatureRead: (source: TemperatureSensor, value: number) => void = (s
         return;
     }
 
-    presentValue = value;
+    presentValue = Math.round(value * 100) / 100;
     heater.presentValue = presentValue;
 
     switch (_state) {
@@ -79,7 +79,6 @@ const onTemperatureRead: (source: TemperatureSensor, value: number) => void = (s
             calculateFilteredSetPoint();
             error = filteredSetPoint - presentValue;
             output = controller.compute(error);
-            // menu.debug(`S${setPoint}-F${filteredSetPoint}-I${initialSetPoint}-O${output}`);
             heater.output = output;
             break;
 
@@ -143,6 +142,7 @@ const updateSettings: (value: ISettings) => void = (value) => {
     kP = value.tunings.p;
     kI = value.tunings.i;
     kD = value.tunings.d;
+    _state = value.state;
 
     saveConfig();
 
@@ -208,7 +208,8 @@ const updateOtherUis:(id: string, isDataUpdate: boolean, isSettingsUpdate: boole
                     maxPower:  maxPower,
                     maxTemp: maxTemp,
                     tcInterval:  output,
-                    cycleTime:  cycleTime
+                    cycleTime:  cycleTime,
+                    state: _state
                 };
             }
         }
@@ -241,7 +242,7 @@ const initUi: (ui: BaseUi) => void = (ui) => {
                 break;
         }
 
-        updateOtherUis(ui.id, true, false);
+        updateOtherUis(ui.id, true, true);
     });
 
     ui.onChangeSetPoint.subscribe((value: number) => {
@@ -268,7 +269,7 @@ const initUi: (ui: BaseUi) => void = (ui) => {
         updateOtherUis(ui.id, true, true);
     });
 
-    ui.onChangeSettings.sub((value: ISettings) => {
+    ui.onChangeSettings.subscribe((value: ISettings) => {
         error = 0;
         output = 0;
         heater.output = output;
@@ -348,24 +349,28 @@ loadConfig()
         maxPower: maxPower as number,
         maxTemp: maxTemp as number,
         tcInterval: tcInterval as number,
-        cycleTime: cycleTime as number
+        cycleTime: cycleTime as number,
+        state: _state as PIDState
     });
     userInterfaces.push(server);
 
     // screen
-    const menu: Menu = new Menu({
-        tunings: {
-            p: kP as number,
-            i: kI as number,
-            d: kD as number
-        },
-        setPoint: setPoint as number,
-        maxPower: maxPower as number,
-        maxTemp: maxTemp as number,
-        tcInterval: tcInterval as number,
-        cycleTime: cycleTime as number
-    });
-    userInterfaces.push(menu);
+    if (!runAsService) {
+        const menu: ConsoleUi = new ConsoleUi({
+            tunings: {
+                p: kP as number,
+                i: kI as number,
+                d: kD as number
+            },
+            setPoint: setPoint as number,
+            maxPower: maxPower as number,
+            maxTemp: maxTemp as number,
+            tcInterval: tcInterval as number,
+            cycleTime: cycleTime as number,
+            state: _state as PIDState
+        });
+        userInterfaces.push(menu);
+    }
 
     userInterfaces.forEach((ui: BaseUi) => { initUi(ui); });
 });
