@@ -1,3 +1,18 @@
+/*
+ * File: c:\pi-nail\pi-nail-client\src\routes\HomePage\HomePage.tsx
+ * Project: c:\pi-nail\pi-nail-client
+ * Created Date: Sunday April 15th 2018
+ * Author: J-Cat
+ * -----
+ * Last Modified:
+ * Modified By:
+ * -----
+ * License: 
+ *    This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 
+ *    International License (http://creativecommons.org/licenses/by-nc/4.0/).
+ * -----
+ * Copyright (c) 2018
+ */
 import autobind from 'autobind-decorator';
 // import { TextField } from 'material-ui';
 import Slider from 'rc-slider';

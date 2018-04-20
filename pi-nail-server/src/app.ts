@@ -1,3 +1,18 @@
+/*
+ * File: c:\pi-nail\pi-nail-server\src\app.ts
+ * Project: c:\pi-nail\pi-nail-server
+ * Created Date: Sunday April 15th 2018
+ * Author: J-Cat
+ * -----
+ * Last Modified:
+ * Modified By:
+ * -----
+ * License: 
+ *    This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 
+ *    International License (http://creativecommons.org/licenses/by-nc/4.0/).
+ * -----
+ * Copyright (c) 2018
+ */
 import * as util from "util";
 import * as fs from "fs";
 import { createServer, Server } from "http";
@@ -18,7 +33,7 @@ import { ISettings } from "./models/ISettings";
 import { BaseUi } from "./ui/baseUi";
 
 // constants
-const runAsService: boolean = false; // if true disables console UI
+const runAsService: boolean = process.argv.length >= 3 ? process.argv[2].toLowerCase().replace('-', '') === 'service' : false; // if true disables console UI
 const onOffHeaterPin: number = 12; // heater GPIO # for relay
 const pwmHeaterPin: number = 13;  // heater GPIO # for PWM
 const tcBus: number = 1; // thermocouple bus #
@@ -354,7 +369,7 @@ loadConfig()
     });
     userInterfaces.push(server);
 
-    // screen
+    // screen -- only if not as service
     if (!runAsService) {
         const menu: ConsoleUi = new ConsoleUi({
             tunings: {

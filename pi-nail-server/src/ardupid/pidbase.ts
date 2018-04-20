@@ -1,3 +1,18 @@
+/*
+ * File: c:\pi-nail\pi-nail-server\src\ardupid\pidbase.ts
+ * Project: c:\pi-nail\pi-nail-server
+ * Created Date: Sunday April 15th 2018
+ * Author: J-Cat
+ * -----
+ * Last Modified:
+ * Modified By:
+ * -----
+ * License: 
+ *    This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 
+ *    International License (http://creativecommons.org/licenses/by-nc/4.0/).
+ * -----
+ * Copyright (c) 2018
+ */
 import { AntiWindupType } from "./antiWindupType";
 
 export abstract class PIDBase {
@@ -39,13 +54,13 @@ export abstract class PIDBase {
         this._kP = kP;
         this._kD = (2 * kD * this._nD) / (2 + this._nD * this._tSec);
         this._kI = 0.5 * kI * this._tSec;
-        if((this._aW === AntiWindupType.BackCalculation) && (this._kI !== 0)) {
+        if ((this._aW === AntiWindupType.BackCalculation) && (this._kI !== 0)) {
             this._kB = 0.5 * kB * this._tSec;
         } else {
             this._kB = 0;
         }
 
-        this._lastTime  = Date.now();
+        this._lastTime = Date.now();
         this._errorOld = 0;
         this._duD = 0;
         this._duI = 0;
@@ -54,7 +69,7 @@ export abstract class PIDBase {
 
     autoCompute(error: number): boolean {
         const currentTime: number = Date.now();
-        if((currentTime - this._lastTime) >= this._t) {
+        if ((currentTime - this._lastTime) >= this._t) {
             this._lastTime = currentTime;
             this.compute(error);
             if ((Date.now() - this._lastTime) > this._t) {
@@ -75,13 +90,13 @@ export abstract class PIDBase {
 
         this._nD = n;
         this._kP = kP;
-        this._kF = (2 -this._nD * this._tSec) / (2 + this._nD * this._tSec);
+        this._kF = (2 - this._nD * this._tSec) / (2 + this._nD * this._tSec);
         this._kD = (2 * kD * this._nD) / (2 + this._nD * this._tSec);
         this._kI = 0.5 * kI * this._tSec;
     }
 
     setBackCalc(kB: number): void {
-        if((this._aW === AntiWindupType.BackCalculation) && (this._kI !== 0)) {
+        if ((this._aW === AntiWindupType.BackCalculation) && (this._kI !== 0)) {
             this._kB = 0.5 * kB * this._tSec;
         } else {
             this._kB = 0;

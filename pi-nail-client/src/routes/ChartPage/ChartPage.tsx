@@ -1,3 +1,18 @@
+/*
+ * File: c:\pi-nail\pi-nail-client\src\routes\ChartPage\ChartPage.tsx
+ * Project: c:\pi-nail\pi-nail-client
+ * Created Date: Thursday April 19th 2018
+ * Author: J-Cat
+ * -----
+ * Last Modified:
+ * Modified By:
+ * -----
+ * License: 
+ *    This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 
+ *    International License (http://creativecommons.org/licenses/by-nc/4.0/).
+ * -----
+ * Copyright (c) 2018
+ */
 import * as React from 'react';
 import { Line } from 'react-chartjs-2';
 import { ChartPageProps } from './ChartPageContainer';
@@ -45,7 +60,7 @@ export default class ChartPage extends React.Component<ChartPageProps.IProps, Ch
             },
             scales: {
                 xAxes: [{
-                    display: true,
+                    display: false,
                     scaleLabel: {
                         display: false
                     }

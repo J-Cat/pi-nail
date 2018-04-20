@@ -1,3 +1,18 @@
+/*
+ * File: c:\pi-nail\pi-nail-client\src\App.scss
+ * Project: c:\pi-nail\pi-nail-client
+ * Created Date: Wednesday April 18th 2018
+ * Author: J-Cat
+ * -----
+ * Last Modified:
+ * Modified By:
+ * -----
+ * License: 
+ *    This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 
+ *    International License (http://creativecommons.org/licenses/by-nc/4.0/).
+ * -----
+ * Copyright (c) 2018
+ */
 .overlay {
   position: fixed;
   top: 0;
@@ -378,8 +393,9 @@ div.rightMenu,
 }
 
 .chartPageContainer {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
