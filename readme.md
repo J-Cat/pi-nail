@@ -27,17 +27,17 @@ The following are some of the key features of the project:
 
 
 ## Demo
+<div class="imgContainer" style="display: float; float-direction: horizontal">
+<img style="float:1" alt="pi-nail Main Screen" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/pinail_blessed_contrib_main_screen.jpg" width="300px" />
 
-![pi-nail Main Screen](https://github.com/J-Cat/pi-nail/blob/master/docs/images/pinail_blessed_contrib_main_screen.jpg)
+<img style="float:1" alt="pi-nail Configuration Screen" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/pinail_blessed_contrib_config_screen.jpg" width="300px" />
 
-![pi-nail Configuration Screen](https://github.com/J-Cat/pi-nail/blob/master/docs/images/pinail_blessed_contrib_config_screen.jpg)
+<img style="float:1" alt="Mobile Main Screen" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_home.PNG" width="200px" />
 
-![Mobile Main Screen](https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_home.PNG)
+<img style="float:1" alt="Mobile Settings" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_settings.PNG" width="200px" />
 
-![Mobile Settings](https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_settings.PNG)
-
-![Mobile Graph](https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_chart.PNG)
-
+<img style="float:1" alt="Mobile Graph" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_chart.PNG" width="300px" />
+</div>
 
 ### Configuring the application
 
@@ -96,4 +96,4 @@ I would also recommend that you install the tempMonitor service to run in the ba
 
 
 ##### Licensing
-!(https://i.creativecommons.org/l/by-nc/4.0/88x31.png)This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
+![BY-NC 4.0](https://i.creativecommons.org/l/by-nc/4.0/88x31.png)This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
