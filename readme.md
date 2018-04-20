@@ -28,15 +28,17 @@ The following are some of the key features of the project:
 
 ## Demo
 <div class="imgContainer" style="display: float; float-direction: horizontal">
-<img style="float:1" alt="pi-nail Main Screen" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/pinail_blessed_contrib_main_screen.jpg" width="300px" />
+<img style="float:1" alt="pi-nail Main Screen" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/pinail_blessed_contrib_main_screen.jpg" width="400px" />
 
-<img style="float:1" alt="pi-nail Configuration Screen" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/pinail_blessed_contrib_config_screen.jpg" width="300px" />
+<img style="float:1" alt="pi-nail Configuration Screen" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/pinail_blessed_contrib_config_screen.jpg" width="400px" />
+</div>
 
-<img style="float:1" alt="Mobile Main Screen" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_home.PNG" width="200px" />
+<div class="imgContainer" style="display: float; float-direction: horizontal">
+<img style="float:1" alt="Mobile Main Screen" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_home.PNG" width="200x" />
 
 <img style="float:1" alt="Mobile Settings" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_settings.PNG" width="200px" />
 
-<img style="float:1" alt="Mobile Graph" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_chart.PNG" width="300px" />
+<img style="float:1" alt="Mobile Graph" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_chart.PNG" width="400px" />
 </div>
 
 ### Configuring the application
