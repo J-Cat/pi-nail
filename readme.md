@@ -18,8 +18,11 @@ The following are some of the key features of the project:
   - Heater Module
     - On/Off Heater Implementation for SSR/relay control
     - PWM Heater Implementation for PWM control for induction heaters or DC resistive coils
+  - Socket.IO Service
+  - React.JS/Redux Web Front End for Mobile
   - Menu Module
     - Console UI Implemented in [blessed](https://github.com/chjj/blessed) and [blessed-contrib](https://github.com/yaronn/blessed-contrib)
+  - Can run as service without Console UI
   - Temperature Monitor Service that runs in the background and sends stop signals to the heaters if a maximum temperature is exceeded.
 
 
@@ -29,25 +32,47 @@ The following are some of the key features of the project:
 
 ![pi-nail Configuration Screen](https://github.com/J-Cat/pi-nail/blob/master/docs/images/pinail_blessed_contrib_config_screen.jpg)
 
+
 ### Configuring the application
 
+#### Server
 Update configuration for pins and default settings
 1. Update pins in app.ts and tempMonitor.ts
 2. Update default settings (ie. PID, etc.) in config.json
 3. Copy config.json to build folder
 
+#### Client
+1. Update configuration in config/config.json
+2. 
+
 ### Running the demo
 
 1. Download the package
-2. Install npm depencies
-3. Build
-4. Run
+2. Server
+   a. Install npm dependencies (npm install)
+   b. Build (node_modules/.bin/tsc)
+   c. Run (node build/app.ts)
+3. Client
+   a. Install npm dependencies (npm install)
+   b. Build (npm run build)
+   c. Run (npm run start-ts)
 
+#### Server (run from Raspberry Pi -- Runs well on PiZeroW)
 ```
 git clone https://github.com/J-Cat/pi-nail
+cd pi-nail-server
 npm install
-tsc
+node_modules/.bin/tsc
 sudo node build/app.js
+```
+
+#### Client (run from PC)
+```
+git clone https://github.com/J-Cat/pi-nail
+cd pi-nail-client
+npm install
+npm run build
+npm run start-ts
 ```
 
 ### Running the temperature monitoring service
@@ -61,5 +86,9 @@ I would also recommend that you install the tempMonitor service to run in the ba
 2. sudo pm2 save
 
 ## Upcoming Features
-- Express.JS API for UI
-- React.JS/Redux/Cordova UI for Mobile
+- Bluetooth communication module to allow for non-network mobile access.
+- WiFi configuration screen in mobile app (can be configured when connected through Bluetooth)
+
+
+##### Licensing
+This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
