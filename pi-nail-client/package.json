@@ -4,6 +4,8 @@
   "private": true,
   "devDependencies": {
     "@types/classnames": "^2.2.3",
+    "@types/cordova": "0.0.34",
+    "@types/cordova-plugin-ble-central": "^1.1.0",
     "@types/jest": "^22.2.3",
     "@types/node": "^9.6.5",
     "@types/prop-types": "^15.5.2",
@@ -51,7 +53,7 @@
     "socket.io-client": "^2.1.0"
   },
   "scripts": {
-    "start": "npm-run-all build-css watch-css start-ts",
+    "start": "npm-run-all --parallel build-css watch-css start-ts",
     "start-ts": "react-scripts-ts start",
     "build": "npm-run-all build-css build-ts",
     "build-ts": "react-scripts-ts build",
