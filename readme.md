@@ -32,6 +32,12 @@ The following are some of the key features of the project:
 
 ![pi-nail Configuration Screen](https://github.com/J-Cat/pi-nail/blob/master/docs/images/pinail_blessed_contrib_config_screen.jpg)
 
+![Mobile Main Screen](https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_home.PNG)
+
+![Mobile Settings](https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_settings.PNG)
+
+![Mobile Graph](https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_chart.PNG)
+
 
 ### Configuring the application
 
@@ -43,7 +49,6 @@ Update configuration for pins and default settings
 
 #### Client
 1. Update configuration in config/config.json
-2. 
 
 ### Running the demo
 
@@ -91,4 +96,4 @@ I would also recommend that you install the tempMonitor service to run in the ba
 
 
 ##### Licensing
-This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
+!(https://i.creativecommons.org/l/by-nc/4.0/88x31.png)This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
