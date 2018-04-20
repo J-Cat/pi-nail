@@ -96,7 +96,7 @@ export default class SettingsPage extends React.Component<SettingsPageProps.IPro
                                 margin='normal'
                                 fullWidth={true}
                                 InputProps={{
-                                    endAdornment: <InputAdornment position="start">&deg;C</InputAdornment>
+                                    endAdornment: <InputAdornment position="start">%</InputAdornment>
                                 }}
                             />
                         </div>
