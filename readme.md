@@ -8,22 +8,32 @@ After much research, I found all the custom solutions out there lacking for PID 
 ## Summary
 
 The following are some of the key features of the project:
-- Port of the ArduPID library to Typescript
-- Implemented in a component based approach to allow replacement of key modules:
-  - Temperature Sensor Module
-    - MAX6675 K-Type Thermocouple Sensor Implementation
-    - MLX90614 IR Temperature Sensor Implementation
-    - Multiple Sensor Implementation (allows using average, max, min of multiple sensors)
-    - Change MLX90614 Address Program to allow Multiple IR Sensors
-  - Heater Module
-    - On/Off Heater Implementation for SSR/relay control
-    - PWM Heater Implementation for PWM control for induction heaters or DC resistive coils
-  - Socket.IO Service
-  - React.JS/Redux Web Front End for Mobile
-  - Menu Module
-    - Console UI Implemented in [blessed](https://github.com/chjj/blessed) and [blessed-contrib](https://github.com/yaronn/blessed-contrib)
-  - Can run as service without Console UI
-  - Temperature Monitor Service that runs in the background and sends stop signals to the heaters if a maximum temperature is exceeded.
+<ul>
+  <li>Port of the ArduPID library to Typescript</li>
+  <li>Implemented in a component based approach to allow replacement of key modules:
+    <ul>
+      <li>Temperature Sensor Module
+        <ul>
+          <li>MAX6675 K-Type Thermocouple Sensor Implementation</li>
+          <li>MLX90614 IR Temperature Sensor Implementation</li>
+          <li>Multiple Sensor Implementation (allows using average, max, min of multiple sensors)</li>
+          <li>Change MLX90614 Address Program to allow Multiple IR Sensors</li>
+        </ul>
+      </li>
+      <li>Heater Module
+        <ul>
+          <li>On/Off Heater Implementation for SSR/relay control</li>
+          <li>PWM Heater Implementation for PWM control for induction heaters or DC resistive coils</li>
+        </ul>
+      </li>
+      <li>Socket.IO Service</li>
+      <li>React.JS/Redux Web Front End for Mobile</li>
+      <li>Console UI Module Implemented in [blessed](https://github.com/chjj/blessed) and [blessed-contrib](https://github.com/yaronn/blessed-contrib)</li>
+      <li>Can run as service without Console UI</li>
+      <li>Temperature Monitor Service that runs in the background and sends stop signals to the heaters if a maximum temperature is exceeded.</li>
+    </ul>
+  </li>
+</ul>
 
 
 ## Demo
@@ -41,28 +51,40 @@ The following are some of the key features of the project:
 <img style="float:1" alt="Mobile Graph" src="https://github.com/J-Cat/pi-nail/blob/master/docs/images/mobile_chart.PNG" width="400px" />
 </div>
 
+
 ### Configuring the application
 
 #### Server
 Update configuration for pins and default settings
-1. Update pins in app.ts and tempMonitor.ts
-2. Update default settings (ie. PID, etc.) in config.json
-3. Copy config.json to build folder
+<ol>
+  <li>Update pins in app.ts and tempMonitor.ts</li>
+  <li>Update default settings (ie. PID, etc.) in config.json</li>
+  <li>Copy config.json to build folder</li>
+</ol>
 
 #### Client
-1. Update configuration in config/config.json
+<ol>
+  <li>Update configuration in config/config.json</li>
+</ol>
 
 ### Running the demo
-
-1. Download the package
-2. Server
-   a. Install npm dependencies (npm install)
-   b. Build (node_modules/.bin/tsc)
-   c. Run (node build/app.ts)
-3. Client
-   a. Install npm dependencies (npm install)
-   b. Build (npm run build)
-   c. Run (npm run start-ts)
+<ol>
+  <li>Download the package</li>
+  <li>Server
+    <ol type="a">
+      <li>Install npm dependencies (npm install)</li>
+      <li>Build (node_modules/.bin/tsc)</li>
+      <li>Run (node build/app.ts)</li>
+    </ol>
+  </li>
+  <li>Client
+    <ol type="a">
+      <li>Install npm dependencies (npm install)</li>
+      <li>Build (npm run build)</li>
+      <li>Run (npm run start-ts)</li>
+    </ol>
+  </li>
+</ol>
 
 #### Server (run from Raspberry Pi -- Runs well on PiZeroW)
 ```
@@ -89,13 +111,16 @@ The temperature monitoring service can be run with the following command:
 node build/tempMonitor.js
 ```
 I would also recommend that you install the tempMonitor service to run in the background all the time.  This can be accomplished by installing [PM2 - Advanced, production process manager for Node.js](http://pm2.keymetrics.io/).  Once PM2 is installed it can be used to schedule the service as follows (from the build directory):
-1. sudo pm2 start tempMonitor.js --name "tempMonitor"
-2. sudo pm2 save
+<ol>
+  <li>sudo pm2 start tempMonitor.js --name "tempMonitor"</li>
+  <li>sudo pm2 save</li>
+</ol>
 
 ## Upcoming Features
-- Bluetooth communication module to allow for non-network mobile access.
-- WiFi configuration screen in mobile app (can be configured when connected through Bluetooth)
-
+<ul>
+  <li>Bluetooth communication module to allow for non-network mobile access.</li>
+  <li>WiFi configuration screen in mobile app (can be configured when connected through Bluetooth)</li>
+</ul>
 
 ##### Licensing
 ![BY-NC 4.0](https://i.creativecommons.org/l/by-nc/4.0/88x31.png)This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
