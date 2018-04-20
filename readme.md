@@ -1,6 +1,6 @@
 # pi-nail
 
-pi-nail is an implementation of an **e-nail** controller for the **Raspberry Pi** using **Node.JS** and **TypeScript**.
+pi-nail is an implementation of an **e-nail** controller for the **Raspberry Pi** using **Node.JS** and **TypeScript**, with an accompanying mobile app written in React.JS/Redux/SocketIO.
 
 After much research, I found all the custom solutions out there lacking for PID control under typescript, and very little available period.  I did, however, find the [ArduPID library](https://github.com/Tellicious/ArduPID-Library) by Tellicious, which seemed quite complete and well written, but in the wrong language :)
 
