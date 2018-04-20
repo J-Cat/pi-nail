@@ -1,11 +1,14 @@
 
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux';
+import { mediaQueryTracker } from 'redux-mediaquery'
 import createSocketIoMiddleware from 'redux-socket.io';
 import * as SocketIO from 'socket.io-client';
 // import * as util from 'util';
 import { getSettings } from '../modules/piNail';
 import { makeRootReducer } from './reducers';
 // import { PiNailActionTypes } from '../models/piNailActionTypes';
+
+
 
 import { IClientConfig } from '../config/IClientConfig';
 import { IPiNailStore } from './piNailStore';
@@ -32,7 +35,7 @@ const connectionPromise: Promise<void> = new Promise<void>((resolve, reject) => 
 });
 
 export function configureStore(initialState?: any): Store<any> {
-    const middlewares: any = [
+    const middlewares: any = [        
         socketIoMiddleware
     ];
 
@@ -44,6 +47,10 @@ export function configureStore(initialState?: any): Store<any> {
     connectionPromise.then(() => {
         store.dispatch(getSettings());
     });
+
+    mediaQueryTracker({
+        isPortrait: "screen and (orientation: portrait)"
+    }, store.dispatch);
 
     return store;
 }

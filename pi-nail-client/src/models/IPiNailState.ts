@@ -5,8 +5,8 @@ export interface IPiNailState {
     readonly data?: IPiNailData;
     readonly settings?: ISettings;
     readonly windowSize: number;
-    readonly setpointData: number[][];
-    readonly tempData: number[][];
-    readonly heatData: number[][];
+    readonly setpointData: number[];
+    readonly tempData: number[];
+    readonly heatData: number[];
     readonly elapsed: number;
 }

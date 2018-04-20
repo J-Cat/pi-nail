@@ -1,185 +1,187 @@
 .overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    text-align: center;
-    display: flex;
-    align-items: center;
-    color: white;
-    pointer-events: none;
-  }
-  
-  html {
-    box-sizing: border-box;
-  }
-  
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    -ms-overflow-style: none;
-    background-color: #BBB;
-  }
-  
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
-  
-  .maincontainer {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .container {
-    height: 100%;
-    width: 100%;
-  }
-  
-  .row {
-    left: 0px;
-    right: 0px;
-  }
-  
-  .scroll-y {
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: auto;
-  }
-  
-  .header.row {
-    height: 50px;
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    background-color: blue;
-    color:white;
-  }
-  
-  .content {
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 70px;
-    margin: 1px;
-    padding: 0px;
-    position: absolute;
-  }
-  
-  .footer {
-    left: 0px;
-    right: 0px;
-    position: absolute;
-    bottom: 0px;
-    height: 70px;
-    margin: 0px;
-  }
-  
-  .navBar {
-    background-color: #AAA;  
-  }
-  
-  .error {
-    color: red;
-    padding: 8px;
-  }
-  
-  div.spinner {
-    margin: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 60px;
-    height: 60px;
-    text-align: center;
-  }
-  
-  div.list {
-    margin: 0px;
-    padding: 0px;
-  }
-  
-  span.listItem div {
-    background-color: white;
-  }
-  
-  .listItemPanel {
-    margin: 1px;
-    padding: 0px;
-  }
-  
-  .detailItemPanel {
-    padding: 10px;
-    margin: 0px;
-  }
-  
-    .detailItemPanel h3 {
-        margin: 0px;
-    }
-  
-  .login {
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .Title {
-    margin: 0px;
-  }
-  
-  .submitButton {
-    width: 90%;
-  }
-  
-  div.rightMenu, .rightMenu, .rightMenu div {
-    padding: 0;
-  }
-  
-  .material-icons {
-    text-rendering: optimizeLegibility;
-  }
-  
-  .page {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .loading {
-    height: 40px;
-  }
-  
-  .loadingMore {
-    height: 40px;
-    width: 40px;
-    text-align: center;
-  }
-  
-  .picturePanel {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-  }
-  
-  .picture {
-    flex: 1; 
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
-  
-  /*.navBar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  color: white;
+  pointer-events: none;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  -ms-overflow-style: none;
+  background-color: #BBB;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.maincontainer {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.row {
+  left: 0px;
+  right: 0px;
+}
+
+.scroll-y {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: auto;
+}
+
+.header.row {
+  height: 50px;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  background-color: blue;
+  color: white;
+}
+
+.content {
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 70px;
+  margin: 1px;
+  padding: 0px;
+  position: absolute;
+}
+
+.footer {
+  left: 0px;
+  right: 0px;
+  position: absolute;
+  bottom: 0px;
+  height: 70px;
+  margin: 0px;
+}
+
+.navBar {
+  background-color: #AAA;
+}
+
+.error {
+  color: red;
+  padding: 8px;
+}
+
+div.spinner {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+}
+
+div.list {
+  margin: 0px;
+  padding: 0px;
+}
+
+span.listItem div {
+  background-color: white;
+}
+
+.listItemPanel {
+  margin: 1px;
+  padding: 0px;
+}
+
+.detailItemPanel {
+  padding: 10px;
+  margin: 0px;
+}
+
+.detailItemPanel h3 {
+  margin: 0px;
+}
+
+.login {
+  padding: 10px;
+  text-align: center;
+}
+
+.Title {
+  margin: 0px;
+}
+
+.submitButton {
+  width: 90%;
+}
+
+div.rightMenu,
+.rightMenu,
+.rightMenu div {
+  padding: 0;
+}
+
+.material-icons {
+  text-rendering: optimizeLegibility;
+}
+
+.page {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.loading {
+  height: 40px;
+}
+
+.loadingMore {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+}
+
+.picturePanel {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.picture {
+  flex: 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/*.navBar {
   }
   
   .navItem  {
@@ -187,185 +189,222 @@
   
   .navItem .material-icons {
   }*/
-  
-  .backgroundLogo {
-    background-size: contain;
-    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAyMDAxMDkwNC8vRU4iDQogImh0dHA6Ly93d3cudzMub3JnL1RSLzIwMDEvUkVDLVNWRy0yMDAxMDkwNC9EVEQvc3ZnMTAuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNjUwLjAwMDAwMCA2NTAuMDAwMDAwIg0KIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPg0KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsNjUwLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSINCmZpbGw9IiNCQTU2MDAiIGZpbGwtb3BhY2l0eT0iMC4wNiIgc3Ryb2tlPSJub25lIj4NCjxwYXRoIGQ9Ik0xNjQ3IDQ1MzIgbC0xNTk3IC0xNTk3IDQ2OCAtNDY4IDQ2NyAtNDY3IDUwIDUwIDUwIDUwIC00MTUgNDE1DQotNDE1IDQxNSAxNDk4IDE0OTggMTQ5NyAxNDk3IDE0OTAgLTE0OTAgYzgxOSAtODE5IDE0OTAgLTE0OTQgMTQ5MCAtMTUwMCAwDQotNSAtMTg3IC0xOTcgLTQxNSAtNDI1IGwtNDE1IC00MTUgNTAgLTUwIDUwIC01MCA0NzAgNDcwIDQ3MCA0NzAgLTE1OTggMTU5OA0KLTE1OTcgMTU5NyAtMTU5OCAtMTU5OHoiLz4NCjxwYXRoIGQ9Ik0xOTc3IDQyMDIgbC0xMjY3IC0xMjY3IDEyNjggLTEyNjggMTI2NyAtMTI2NyAyOTMgMjkyIDI5MiAyOTMgLTQ4Nw0KNDg3IC00ODggNDg4IDQ4NSA0ODUgNDg1IDQ4NSAtNDg4IDQ4NyAtNDg3IDQ4OCA0OTAgNDkwIDQ5MCA0OTAgLTI5MyAyOTMNCi0yOTIgMjkyIC0xMjY4IC0xMjY4eiIvPg0KPHBhdGggZD0iTTM1NjAgNDMxNSBsLTQxNSAtNDE1IDQxMCAtNDEwIDQxMCAtNDEwIDQxNyA0MTcgNDE4IDQxOCAtNDA3IDQwNw0KYy0yMjUgMjI1IC00MTAgNDA4IC00MTMgNDA4IC0zIDAgLTE5MiAtMTg3IC00MjAgLTQxNXoiLz4NCjxwYXRoIGQ9Ik00NTQwIDMzMzUgbC00MTUgLTQxNSA0MTMgLTQxMyA0MTMgLTQxMiA0MTYgNDE4IDQxNyA0MTggLTQxMCA0MTANCmMtMjI1IDIyNSAtNDExIDQwOSAtNDE0IDQwOSAtMyAwIC0xOTIgLTE4NyAtNDIwIC00MTV6Ii8+DQo8cGF0aCBkPSJNMzU3MyAyMzYxIGwtNDAyIC00MDcgNDA5IC00MDkgNDEwIC00MTAgNDA1IDQwNSA0MDUgNDA1IC00MTIgNDExDQotNDEzIDQxMSAtNDAyIC00MDZ6Ii8+DQo8L2c+DQo8L3N2Zz4=');
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
-  
-  .snackbar {
-  }
-  
-  .error {
-    color: red;
-  }
-  
-  .version {
-    position: absolute;
-    top: -15px;
-    left: 8px;
-    font-size: 10px;
-    color: darkgray;
-  }
-  
-  .routeContent {
-    position: absolute;
-  }
-  
-  .homePageContainer {
-      height: 100%;
-      width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    @media screen and (orientation: landscape) {
-        flex-direction: row;        
-    }
-  }  
-  
-  .temperatureContainer {
-    @media screen and (orientation: landscape) {
-        width: 50%;
-        height: 100%;
-    }
-    @media screen and (orientation: portrait) {
-        width: 100%;
-        height: 50%;
-    }
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .setPointContainer {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .setPointContainer div::after,.setPointContainer div::before {
-    border: none !important;
-    background: none !important;
-  }
 
-  .tempSymbol {
-      flex: 1;
-      text-align: left;
-  }
-  
-  .tempText {
-    color: gray;
-    @for $i from 0 through 30 {
-        @media screen and (min-aspect-ratio: #{30+$i}/30) {
-            font-size: #{(40-$i)/2}vw;
-        }
-    }
-    @media screen and (min-aspect-ratio: 2/1) {
-        font-size: 48px;       
-    }
-    @media screen and (max-aspect-ratio: 1/1) {
-        font-size: 20vw;       
-    }
-    @media screen and (max-aspect-ratio: 1/2) {
-        font-size: 48px;
-    }
-  }
-  
-  .setPointContainer .setPointInput {
-      flex: 1;
-  }
-  
-  .setPointInput input {
-    margin: 0;
-    padding: 0;
-    color: gray;
-    text-align: right;
-    @for $i from 0 through 30 {
-        @media screen and (min-aspect-ratio: #{30+$i}/30) {
-            font-size: #{(40-$i)/2}vw;
-        }
-    }
-    @media screen and (min-aspect-ratio: 2/1) {
-        font-size: 48px;       
-    }
-    @media screen and (max-aspect-ratio: 1/1) {
-        font-size: 20vw;       
-    }
-    @media screen and (max-aspect-ratio: 1/2) {
-        font-size: 48px;
-    }
-  }
-    
-  .presentValueContainer {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .presentValueContainer .presentValue {
-    flex: 1;
-    text-align: right;
-  }
-  
-  .stateContainer {
-    @media screen and (orientation: landscape) {
-        flex-direction: column;
-    }
-    @media screen and (orientation: portrait) {
-        flex-direction: row;
-    }
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-  }
+.backgroundLogo {
+  background-size: contain;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAyMDAxMDkwNC8vRU4iDQogImh0dHA6Ly93d3cudzMub3JnL1RSLzIwMDEvUkVDLVNWRy0yMDAxMDkwNC9EVEQvc3ZnMTAuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNjUwLjAwMDAwMCA2NTAuMDAwMDAwIg0KIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPg0KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsNjUwLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSINCmZpbGw9IiNCQTU2MDAiIGZpbGwtb3BhY2l0eT0iMC4wNiIgc3Ryb2tlPSJub25lIj4NCjxwYXRoIGQ9Ik0xNjQ3IDQ1MzIgbC0xNTk3IC0xNTk3IDQ2OCAtNDY4IDQ2NyAtNDY3IDUwIDUwIDUwIDUwIC00MTUgNDE1DQotNDE1IDQxNSAxNDk4IDE0OTggMTQ5NyAxNDk3IDE0OTAgLTE0OTAgYzgxOSAtODE5IDE0OTAgLTE0OTQgMTQ5MCAtMTUwMCAwDQotNSAtMTg3IC0xOTcgLTQxNSAtNDI1IGwtNDE1IC00MTUgNTAgLTUwIDUwIC01MCA0NzAgNDcwIDQ3MCA0NzAgLTE1OTggMTU5OA0KLTE1OTcgMTU5NyAtMTU5OCAtMTU5OHoiLz4NCjxwYXRoIGQ9Ik0xOTc3IDQyMDIgbC0xMjY3IC0xMjY3IDEyNjggLTEyNjggMTI2NyAtMTI2NyAyOTMgMjkyIDI5MiAyOTMgLTQ4Nw0KNDg3IC00ODggNDg4IDQ4NSA0ODUgNDg1IDQ4NSAtNDg4IDQ4NyAtNDg3IDQ4OCA0OTAgNDkwIDQ5MCA0OTAgLTI5MyAyOTMNCi0yOTIgMjkyIC0xMjY4IC0xMjY4eiIvPg0KPHBhdGggZD0iTTM1NjAgNDMxNSBsLTQxNSAtNDE1IDQxMCAtNDEwIDQxMCAtNDEwIDQxNyA0MTcgNDE4IDQxOCAtNDA3IDQwNw0KYy0yMjUgMjI1IC00MTAgNDA4IC00MTMgNDA4IC0zIDAgLTE5MiAtMTg3IC00MjAgLTQxNXoiLz4NCjxwYXRoIGQ9Ik00NTQwIDMzMzUgbC00MTUgLTQxNSA0MTMgLTQxMyA0MTMgLTQxMiA0MTYgNDE4IDQxNyA0MTggLTQxMCA0MTANCmMtMjI1IDIyNSAtNDExIDQwOSAtNDE0IDQwOSAtMyAwIC0xOTIgLTE4NyAtNDIwIC00MTV6Ii8+DQo8cGF0aCBkPSJNMzU3MyAyMzYxIGwtNDAyIC00MDcgNDA5IC00MDkgNDEwIC00MTAgNDA1IDQwNSA0MDUgNDA1IC00MTIgNDExDQotNDEzIDQxMSAtNDAyIC00MDZ6Ii8+DQo8L2c+DQo8L3N2Zz4=');
+  background-repeat: no-repeat;
+  background-position: center center;
+}
 
-  .stateGaugeContainer {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-  }
+.snackbar {}
 
-  .stateButtonContainer {
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    @media screen and (orientation: landscape) {
-        flex-direction: row;        
-    }
-    @media screen and (orientation: portrait) {
-        flex-direction: column;        
-    }
+.error {
+  color: red;
+}
+
+.version {
+  position: absolute;
+  top: -15px;
+  left: 8px;
+  font-size: 10px;
+  color: darkgray;
+}
+
+.routeContent {
+  position: absolute;
+}
+
+.homePageBody {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: stretch;
+  @media screen and (orientation: portrait) {
+    flex-direction: column-reverse
   }
-  
-  .stateButton {
-    margin: 0;
-    padding: 0;
-    height: unset !important;
+}
+
+.outputSlider {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  padding: 0px 30px 50px 30px;
+  @media screen and (orientation: landscape) {
+    padding: 30px;
   }
-  
-  .topGaugeContainer {
-    width: 100%;
+}
+
+.outputSlider .rc-slider {
+  @media screen and (orientation: landscape) {
     height: 100%;
   }
-  
-  .gaugeContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+  @media screen and (orientation: portrait) {
+    width: 100%
   }
+}
+
+.mainContainer {
+  flex: 99999999;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items:  stretch;
+  @media screen and (orientation: landscape) {
+    flex-direction: row;
+  }  
+}
+
+.tempsContainer {
+  @media screen and (orientation: landscape) {
+    width: 50%;
+    height: 100%;
+  }
+  @media screen and (orientation: portrait) {
+    width: 100%;
+    height: 50%;
+  }
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tempsContainer>.tempContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.tempContainer>.tempTextContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+} // .setPointContainer div::after,.setPointContainer div::before {
+//   border: none !important;
+//   background: none !important;
+// }
+.tempContainer>.tempTextContainer>.tempValue {
+  flex: 1;
+}
+
+.tempContainer>.tempTextContainer>.tempSymbol {
+  flex: 1;
+}
+
+.tempContainer>.tempTextContainer>.tempText {
+  color: gray;
+  @for $i from 0 through 20 {
+    @media screen and (min-aspect-ratio: #{20+$i}/20) {
+      font-size: #{(30-$i)/2}vw;
+    }
+  }
+  @media screen and (min-aspect-ratio: 2/1) {
+    font-size: 36px;
+  }
+  @media screen and (max-aspect-ratio: 1/1) {
+    font-size: 15vw;
+  }
+  @media screen and (max-aspect-ratio: 1/2) {
+    font-size: 36px;
+  }
+}
+
+.stateContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (orientation: landscape) {
+    flex-direction: column;
+  }
+  @media screen and (orientation: portrait) {
+    flex-direction: row;
+  }
+}
+
+.stateGaugeContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  @media screen and (orientation: landscape) {
+    width: 30vw;
+  }
+  @media screen and (orientation: portrait) {
+    width: 60vw;
+  }
+}
+
+.stateGaugeContainer canvas {
+  flex: 1;
+}
+
+.stateGaugeContainer .outputSlider {
+  flex: 1;
+  padding: 0px;
+  height: 100%;
+}
+
+.stateButtonContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media screen and (orientation: landscape) {
+    flex-direction: row;
+  }
+  @media screen and (orientation: portrait) {
+    flex-direction: column;
+  }
+}
+
+.stateButton {
+  margin: 0;
+  padding: 0;
+  height: unset !important;
+}
+
+.chartPageContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;  
+}
+
+.settingsPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px;
+}
+
+.settingsPageContainer hr {
+  margin: 10px;
+}
+
+.settingsPageForm {
+}
+
+.settingsPageContainer .numberField {
+  max-width: 75px;
+  min-width: 65px;
+  margin: 10px;
+  padding: 5px;
+  font-size: 20em;
+}

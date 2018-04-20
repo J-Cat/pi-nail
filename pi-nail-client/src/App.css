@@ -120,7 +120,9 @@ span.listItem div {
 .submitButton {
   width: 90%; }
 
-div.rightMenu, .rightMenu, .rightMenu div {
+div.rightMenu,
+.rightMenu,
+.rightMenu div {
   padding: 0; }
 
 .material-icons {
@@ -177,30 +179,61 @@ div.rightMenu, .rightMenu, .rightMenu div {
 .routeContent {
   position: absolute; }
 
-.homePageContainer {
+.homePageBody {
   height: 100%;
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
-  flex-direction: column; }
+  flex-direction: row;
+  align-items: center;
+  justify-content: stretch; }
+  @media screen and (orientation: portrait) {
+    .homePageBody {
+      flex-direction: column-reverse; } }
+
+.outputSlider {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  padding: 0px 30px 50px 30px; }
   @media screen and (orientation: landscape) {
-    .homePageContainer {
+    .outputSlider {
+      padding: 30px; } }
+
+@media screen and (orientation: landscape) {
+  .outputSlider .rc-slider {
+    height: 100%; } }
+
+@media screen and (orientation: portrait) {
+  .outputSlider .rc-slider {
+    width: 100%; } }
+
+.mainContainer {
+  flex: 99999999;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch; }
+  @media screen and (orientation: landscape) {
+    .mainContainer {
       flex-direction: row; } }
 
-.temperatureContainer {
+.tempsContainer {
   flex: 1;
   display: flex;
   flex-direction: column; }
   @media screen and (orientation: landscape) {
-    .temperatureContainer {
+    .tempsContainer {
       width: 50%;
       height: 100%; } }
   @media screen and (orientation: portrait) {
-    .temperatureContainer {
+    .tempsContainer {
       width: 100%;
       height: 50%; } }
 
-.setPointContainer {
+.tempsContainer > .tempContainer {
   flex: 1;
   display: flex;
   flex-direction: row;
@@ -210,248 +243,97 @@ div.rightMenu, .rightMenu, .rightMenu div {
   justify-content: center;
   align-items: center; }
 
-.setPointContainer div::after, .setPointContainer div::before {
-  border: none !important;
-  background: none !important; }
+.tempContainer > .tempTextContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; }
 
-.tempSymbol {
-  flex: 1;
-  text-align: left; }
-
-.tempText {
-  color: gray; }
-  @media screen and (min-aspect-ratio: 30 / 30) {
-    .tempText {
-      font-size: 20vw; } }
-  @media screen and (min-aspect-ratio: 31 / 30) {
-    .tempText {
-      font-size: 19.5vw; } }
-  @media screen and (min-aspect-ratio: 32 / 30) {
-    .tempText {
-      font-size: 19vw; } }
-  @media screen and (min-aspect-ratio: 33 / 30) {
-    .tempText {
-      font-size: 18.5vw; } }
-  @media screen and (min-aspect-ratio: 34 / 30) {
-    .tempText {
-      font-size: 18vw; } }
-  @media screen and (min-aspect-ratio: 35 / 30) {
-    .tempText {
-      font-size: 17.5vw; } }
-  @media screen and (min-aspect-ratio: 36 / 30) {
-    .tempText {
-      font-size: 17vw; } }
-  @media screen and (min-aspect-ratio: 37 / 30) {
-    .tempText {
-      font-size: 16.5vw; } }
-  @media screen and (min-aspect-ratio: 38 / 30) {
-    .tempText {
-      font-size: 16vw; } }
-  @media screen and (min-aspect-ratio: 39 / 30) {
-    .tempText {
-      font-size: 15.5vw; } }
-  @media screen and (min-aspect-ratio: 40 / 30) {
-    .tempText {
-      font-size: 15vw; } }
-  @media screen and (min-aspect-ratio: 41 / 30) {
-    .tempText {
-      font-size: 14.5vw; } }
-  @media screen and (min-aspect-ratio: 42 / 30) {
-    .tempText {
-      font-size: 14vw; } }
-  @media screen and (min-aspect-ratio: 43 / 30) {
-    .tempText {
-      font-size: 13.5vw; } }
-  @media screen and (min-aspect-ratio: 44 / 30) {
-    .tempText {
-      font-size: 13vw; } }
-  @media screen and (min-aspect-ratio: 45 / 30) {
-    .tempText {
-      font-size: 12.5vw; } }
-  @media screen and (min-aspect-ratio: 46 / 30) {
-    .tempText {
-      font-size: 12vw; } }
-  @media screen and (min-aspect-ratio: 47 / 30) {
-    .tempText {
-      font-size: 11.5vw; } }
-  @media screen and (min-aspect-ratio: 48 / 30) {
-    .tempText {
-      font-size: 11vw; } }
-  @media screen and (min-aspect-ratio: 49 / 30) {
-    .tempText {
-      font-size: 10.5vw; } }
-  @media screen and (min-aspect-ratio: 50 / 30) {
-    .tempText {
-      font-size: 10vw; } }
-  @media screen and (min-aspect-ratio: 51 / 30) {
-    .tempText {
-      font-size: 9.5vw; } }
-  @media screen and (min-aspect-ratio: 52 / 30) {
-    .tempText {
-      font-size: 9vw; } }
-  @media screen and (min-aspect-ratio: 53 / 30) {
-    .tempText {
-      font-size: 8.5vw; } }
-  @media screen and (min-aspect-ratio: 54 / 30) {
-    .tempText {
-      font-size: 8vw; } }
-  @media screen and (min-aspect-ratio: 55 / 30) {
-    .tempText {
-      font-size: 7.5vw; } }
-  @media screen and (min-aspect-ratio: 56 / 30) {
-    .tempText {
-      font-size: 7vw; } }
-  @media screen and (min-aspect-ratio: 57 / 30) {
-    .tempText {
-      font-size: 6.5vw; } }
-  @media screen and (min-aspect-ratio: 58 / 30) {
-    .tempText {
-      font-size: 6vw; } }
-  @media screen and (min-aspect-ratio: 59 / 30) {
-    .tempText {
-      font-size: 5.5vw; } }
-  @media screen and (min-aspect-ratio: 60 / 30) {
-    .tempText {
-      font-size: 5vw; } }
-  @media screen and (min-aspect-ratio: 2 / 1) {
-    .tempText {
-      font-size: 48px; } }
-  @media screen and (max-aspect-ratio: 1 / 1) {
-    .tempText {
-      font-size: 20vw; } }
-  @media screen and (max-aspect-ratio: 1 / 2) {
-    .tempText {
-      font-size: 48px; } }
-
-.setPointContainer .setPointInput {
+.tempContainer > .tempTextContainer > .tempValue {
   flex: 1; }
 
-.setPointInput input {
-  margin: 0;
-  padding: 0;
-  color: gray;
-  text-align: right; }
-  @media screen and (min-aspect-ratio: 30 / 30) {
-    .setPointInput input {
-      font-size: 20vw; } }
-  @media screen and (min-aspect-ratio: 31 / 30) {
-    .setPointInput input {
-      font-size: 19.5vw; } }
-  @media screen and (min-aspect-ratio: 32 / 30) {
-    .setPointInput input {
-      font-size: 19vw; } }
-  @media screen and (min-aspect-ratio: 33 / 30) {
-    .setPointInput input {
-      font-size: 18.5vw; } }
-  @media screen and (min-aspect-ratio: 34 / 30) {
-    .setPointInput input {
-      font-size: 18vw; } }
-  @media screen and (min-aspect-ratio: 35 / 30) {
-    .setPointInput input {
-      font-size: 17.5vw; } }
-  @media screen and (min-aspect-ratio: 36 / 30) {
-    .setPointInput input {
-      font-size: 17vw; } }
-  @media screen and (min-aspect-ratio: 37 / 30) {
-    .setPointInput input {
-      font-size: 16.5vw; } }
-  @media screen and (min-aspect-ratio: 38 / 30) {
-    .setPointInput input {
-      font-size: 16vw; } }
-  @media screen and (min-aspect-ratio: 39 / 30) {
-    .setPointInput input {
-      font-size: 15.5vw; } }
-  @media screen and (min-aspect-ratio: 40 / 30) {
-    .setPointInput input {
+.tempContainer > .tempTextContainer > .tempSymbol {
+  flex: 1; }
+
+.tempContainer > .tempTextContainer > .tempText {
+  color: gray; }
+  @media screen and (min-aspect-ratio: 20 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 15vw; } }
-  @media screen and (min-aspect-ratio: 41 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 21 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 14.5vw; } }
-  @media screen and (min-aspect-ratio: 42 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 22 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 14vw; } }
-  @media screen and (min-aspect-ratio: 43 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 23 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 13.5vw; } }
-  @media screen and (min-aspect-ratio: 44 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 24 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 13vw; } }
-  @media screen and (min-aspect-ratio: 45 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 25 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 12.5vw; } }
-  @media screen and (min-aspect-ratio: 46 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 26 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 12vw; } }
-  @media screen and (min-aspect-ratio: 47 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 27 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 11.5vw; } }
-  @media screen and (min-aspect-ratio: 48 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 28 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 11vw; } }
-  @media screen and (min-aspect-ratio: 49 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 29 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 10.5vw; } }
-  @media screen and (min-aspect-ratio: 50 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 30 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 10vw; } }
-  @media screen and (min-aspect-ratio: 51 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 31 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 9.5vw; } }
-  @media screen and (min-aspect-ratio: 52 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 32 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 9vw; } }
-  @media screen and (min-aspect-ratio: 53 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 33 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 8.5vw; } }
-  @media screen and (min-aspect-ratio: 54 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 34 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 8vw; } }
-  @media screen and (min-aspect-ratio: 55 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 35 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 7.5vw; } }
-  @media screen and (min-aspect-ratio: 56 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 36 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 7vw; } }
-  @media screen and (min-aspect-ratio: 57 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 37 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 6.5vw; } }
-  @media screen and (min-aspect-ratio: 58 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 38 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 6vw; } }
-  @media screen and (min-aspect-ratio: 59 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 39 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 5.5vw; } }
-  @media screen and (min-aspect-ratio: 60 / 30) {
-    .setPointInput input {
+  @media screen and (min-aspect-ratio: 40 / 20) {
+    .tempContainer > .tempTextContainer > .tempText {
       font-size: 5vw; } }
   @media screen and (min-aspect-ratio: 2 / 1) {
-    .setPointInput input {
-      font-size: 48px; } }
+    .tempContainer > .tempTextContainer > .tempText {
+      font-size: 36px; } }
   @media screen and (max-aspect-ratio: 1 / 1) {
-    .setPointInput input {
-      font-size: 20vw; } }
+    .tempContainer > .tempTextContainer > .tempText {
+      font-size: 15vw; } }
   @media screen and (max-aspect-ratio: 1 / 2) {
-    .setPointInput input {
-      font-size: 48px; } }
-
-.presentValueContainer {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-  align-items: center; }
-
-.presentValueContainer .presentValue {
-  flex: 1;
-  text-align: right; }
+    .tempContainer > .tempTextContainer > .tempText {
+      font-size: 36px; } }
 
 .stateContainer {
   flex: 1;
   display: flex;
-  justify-content: flex-end; }
+  justify-content: center;
+  align-items: center; }
   @media screen and (orientation: landscape) {
     .stateContainer {
       flex-direction: column; } }
@@ -462,14 +344,31 @@ div.rightMenu, .rightMenu, .rightMenu div {
 .stateGaugeContainer {
   flex: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: center; }
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0; }
+  @media screen and (orientation: landscape) {
+    .stateGaugeContainer {
+      width: 30vw; } }
+  @media screen and (orientation: portrait) {
+    .stateGaugeContainer {
+      width: 60vw; } }
+
+.stateGaugeContainer canvas {
+  flex: 1; }
+
+.stateGaugeContainer .outputSlider {
+  flex: 1;
+  padding: 0px;
+  height: 100%; }
 
 .stateButtonContainer {
-  padding: 10px;
+  flex: 1;
   display: flex;
-  justify-content: flex-end;
-  align-items: center; }
+  align-items: center;
+  justify-content: center; }
   @media screen and (orientation: landscape) {
     .stateButtonContainer {
       flex-direction: row; } }
@@ -482,13 +381,27 @@ div.rightMenu, .rightMenu, .rightMenu div {
   padding: 0;
   height: unset !important; }
 
-.topGaugeContainer {
+.chartPageContainer {
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center; }
 
-.gaugeContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0; }
+.settingsPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px; }
+
+.settingsPageContainer hr {
+  margin: 10px; }
+
+.settingsPageContainer .numberField {
+  max-width: 75px;
+  min-width: 65px;
+  margin: 10px;
+  padding: 5px;
+  font-size: 20em; }

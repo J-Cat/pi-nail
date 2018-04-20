@@ -11,7 +11,7 @@ const initialState: IPiNailState = {
     loaded: false,
     setpointData: [],
     tempData: [],
-    windowSize: 25
+    windowSize: 50
 };
 
 /* Action Creators */
@@ -60,17 +60,12 @@ export const getSettings = (): IPiNailAction => {
 export const piNailReducer = (state: IPiNailState = initialState, action: PiNailActions) => {
     switch (action.type) {
         case PiNailActionTypes.CLIENT_UPDATE_DATA:
-            const x: number = state.tempData.length === 0 ? 1 : state.tempData[state.tempData.length-1][0];
-            const setpointData: number[][] = [...state.setpointData, [x, util.isNullOrUndefined(state.settings) ? 0 : state.settings.setPoint]];
-            const tempData: number[][] = [...state.tempData, [x, action.data!.presentValue]];
-            const heatData: number[][] = [...state.heatData, [x, action.data!.output]];
+            const setpointData: number[] = [...state.setpointData, util.isNullOrUndefined(state.settings) ? 0 : state.settings.setPoint];
+            const tempData: number[] = [...state.tempData, action.data!.presentValue];
+            const heatData: number[] = [...state.heatData, action.data!.output];
             while (setpointData.length > state.windowSize) {
                 setpointData.shift();
-            }
-            while (tempData.length > state.windowSize) {
                 tempData.shift();
-            }
-            while (heatData.length > state.windowSize) {
                 heatData.shift();
             }
             return Object.assign({}, state, {
@@ -94,6 +89,27 @@ export const piNailReducer = (state: IPiNailState = initialState, action: PiNail
             return Object.assign({}, state, {
                 settings: Object.assign({}, state.settings, {
                     state: action.state
+                })
+            });
+
+        case PiNailActionTypes.SERVER_UPDATE_SETPOINT:
+            return Object.assign({}, state, {
+                settings: Object.assign({}, state.settings, {
+                    setPoint: action.value
+                })
+            });
+
+        case PiNailActionTypes.SERVER_UPDATE_OUTPUT:
+            return Object.assign({}, state, {
+                data: Object.assign({}, state.data, {
+                    output: action.value
+                })
+            });
+
+        case PiNailActionTypes.SERVER_UPDATE_TUNINGS:
+            return Object.assign({}, state, {
+                settings: Object.assign({}, state.settings, {
+                    tunings: action.tunings
                 })
             });
 

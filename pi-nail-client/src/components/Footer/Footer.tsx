@@ -1,4 +1,4 @@
-import { CheckCircle, Error, Settings, Wifi } from '@material-ui/icons';
+import { CheckCircle, Error, InsertChart, Settings /*, Wifi*/ } from '@material-ui/icons';
 import { Paper, Snackbar } from 'material-ui';
 import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
 import * as PropTypes from 'prop-types';
@@ -38,12 +38,19 @@ export default class Footer extends React.Component<FooterProps.IProps, FooterPr
                         className="navItem"
                     />
                     <BottomNavigationAction
+                        label="Chart"
+                        icon={<InsertChart />}
+                        // tslint:disable
+                        onClick={() => this.context.router.history.push(`${config.baseRoutePath}/chart`)}
+                        className="navItem"
+                    />
+                    {/* <BottomNavigationAction
                         label="Network"
                         icon={<Wifi />}
                         // tslint:disable
                         onClick={() => this.context.router.history.push(`${config.baseRoutePath}/network`)}
                         className="navItem"
-                    />
+                    /> */}
                 </BottomNavigation>
 
                 <Snackbar

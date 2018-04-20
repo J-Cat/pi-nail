@@ -1,24 +1,26 @@
 import { connect } from 'react-redux';
 import * as util from 'util';
-import { /* IPiNailData, PIDState, */ ISettings, ITunings } from '../../models/shared';
-import { /* getSettings, */ updateOutput, updateSetPoint, updateSettings, updateTunings } from '../../modules/piNail';
+import { PIDState } from '../../models/PIDState';
+import { updateOutput, updateSetPoint } from '../../modules/piNail';
 import { IPiNailStore } from '../../store/piNailStore';
 import HomePage from './HomePage';
 
 export namespace HomePageProps {
     export interface IStateProps {
         isConnected: boolean;
+        isPortrait: boolean;
         setPoint: number;
         presentValue: number;
         output: number;
+        state: PIDState;
+        min: number;
+        max: number;
+        sliderValue: number;
     }
 
     export interface IDispatchProps {
-        acknowledgeMessage: () => void;
         updateOutput: (value: number) => void;
-        updateSettings: (settings: ISettings) => void;
         updateSetPoint: (value: number) => void;
-        updateTunings: (tunings: ITunings) => void;
     }
 
     export interface IOwnProps {
@@ -28,6 +30,10 @@ export namespace HomePageProps {
 
     // State for the component
     export interface IState {
+        min: number;
+        max: number;
+        isChanging: boolean;
+        sliderValue: number;
     }
 }
 
@@ -38,30 +44,32 @@ function mapStateToProps(state: IPiNailStore, ownProps: any) {
         : true;
     return {
         isConnected,
+        isPortrait: state.responsive.isPortrait,
         setPoint: !state.piNail.settings ? 0 : state.piNail.settings.setPoint,
         presentValue: !state.piNail.data ? 0 : state.piNail.data.presentValue,
-        output: !state.piNail.data ? 0 : state.piNail.data.output
+        output: !state.piNail.data ? 0 : state.piNail.data.output,
+        state: !state.piNail.settings ? 0 : state.piNail.settings.state,
+        min: 0,
+        max: !state.piNail.settings ? 100 : (
+            state.piNail.settings.state === PIDState.Manual
+                ? state.piNail.settings.maxPower
+                : state.piNail.settings.maxTemp
+        ),
+        sliderValue: !state.piNail.settings ? 0 : (
+            state.piNail.settings.state === PIDState.Manual
+                ? (!state.piNail.data ? 0 : state.piNail.data.output)
+                : state.piNail.settings.setPoint
+        )
     };
 }
 
 function mapDispatchToProps(dispatch: (...args: any[]) => void) {
     return {
-        acknowledgeMessage: (): void => {
-            // dispatch(acknowledgeWorkshopMessage());
-            // dispatch(acknowledgeKnowYourPeersMessage());
-            // dispatch(acknowledgePicturesMessage());
-        },
         updateOutput: (value: number): void => {
             dispatch(updateOutput(value));
         },
         updateSetPoint: (value: number): void => {
             dispatch(updateSetPoint(value));
-        },
-        updateSettings: (settings: ISettings): void => {
-            dispatch(updateSettings(settings));
-        },
-        updateTunings: (tunings: ITunings): void => {
-            dispatch(updateTunings(tunings));
         }
     };
 }

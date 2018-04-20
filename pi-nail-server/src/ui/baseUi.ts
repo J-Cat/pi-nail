@@ -59,6 +59,10 @@ export abstract class BaseUi {
         }
         this._data = value;
 
+        if (isNaN(this._data.presentValue) || isNaN(this._settings.setPoint)) {
+            return;
+        }
+
         if (this.pastValues.length >= 100) {
             this.xOffset = this.xOffset >= 899 ? 0 : this.xOffset + 1;
             if (this.xOffset === 900) {

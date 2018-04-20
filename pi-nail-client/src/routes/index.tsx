@@ -2,6 +2,7 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import ChartPage from './ChartPage';
 import HomePage from './HomePage';
 import SettingsPage from './SettingsPage';
 
@@ -24,6 +25,10 @@ export default class Routes extends React.Component<{}, {}> {
                 <Route
                     path={`${config.baseRoutePath}/settings`}
                     component={SettingsPage}
+                />
+                <Route
+                    path={`${config.baseRoutePath}/chart`}
+                    component={ChartPage}
                 />
                 <Route
                     path={`${config.baseRoutePath}/`}
