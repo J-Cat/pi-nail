@@ -19,6 +19,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import ChartPage from './ChartPage';
 import HomePage from './HomePage';
+import NetworkPage from './NetworkPage';
 import SettingsPage from './SettingsPage';
 
 import { IClientConfig } from '../config/IClientConfig';
@@ -46,8 +47,8 @@ export default class Routes extends React.Component<{}, {}> {
                     component={ChartPage}
                 />
                 <Route
-                    path={`${config.baseRoutePath}/`}
-                    component={HomePage}
+                    path={`${config.baseRoutePath}/network`}
+                    component={NetworkPage}
                 />
             </Switch>
         );

@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.jcat.pinail" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>pi-nail-cordova</name>
+    <name>pi-nail</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Raspberry Pi e-Nail Controller
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="joe@cataford.com" href="https://github.com/J-Cat">
+        J-Cat
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />

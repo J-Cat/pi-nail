@@ -57,7 +57,7 @@
     "start-ts": "react-scripts-ts start",
     "build": "npm-run-all build-css build-ts copy-cordova",
     "build-ts": "react-scripts-ts build",
-    "copy-cordova": "robocopy build ..\\pi-nail-cordova\\www -MIR",
+    "copy-cordova": "robocopy build ..\\pi-nail-cordova\\www -MIR && exit 0",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "build-css": "node-sass-chokidar src/ -o src/",
