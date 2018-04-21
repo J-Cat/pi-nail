@@ -13,6 +13,7 @@
  * -----
  * Copyright (c) 2018
  */
+// import autobind from 'autobind-decorator';
 import { CssBaseline } from 'material-ui';
 import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
 import * as React from 'react';

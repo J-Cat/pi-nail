@@ -1,0 +1,6 @@
+
+/Users/joe/.taco_home/node_modules/taco-remote-lib/2.3.2/node_modules/taco-remote-lib/node_modules/taco-utils/tacoPackageLoader.js:274
+                    throw errorHelper.get(TacoErrorCodes.PackageLoaderInvalidPackageVersionSpecifier, packageId.split("@")[1], packageName);
+                    ^
+PackageLoaderInvalidPackageVersionSpecifier: Error: 8.0.0 is an invalid cordova version
+Process exited with code 1

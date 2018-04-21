@@ -1,0 +1,23 @@
+{
+  "android": {
+    "release": {
+      "keystore": ".\\pi-nail.keystore",
+      "storePassword": "pi-nail",
+      "alias": "pi-nail",
+      "password": "pi-nail",
+      "keystoreType": ""
+    }
+  },
+  "ios": {
+    "debug": {
+      "codeSignIdentity": "iPhone Developer",
+      "developmentTeam": "DXWZU47ELN",
+      "packageType": "development"
+    },
+    "release": {
+      "codeSignIdentity": "iPhone Developer",
+      "developmentTeam": "DXWZU47ELN",
+      "packageType": "enterprise"
+    }
+  }
+}
