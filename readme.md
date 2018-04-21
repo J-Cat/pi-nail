@@ -116,6 +116,13 @@ I would also recommend that you install the tempMonitor service to run in the ba
   <li>sudo pm2 save</li>
 </ol>
 
+### Mobile Installation Packages
+<ul>
+  <li><a href="itms-services://?action=download-manifest&url=https://github.com/J-Cat/pi-nail/raw/master/packages/manifest.plist">iOS</a>
+  </li>
+</ul>
+  
+
 ## Upcoming Features
 <ul>
   <li>Bluetooth communication module to allow for non-network mobile access.</li>
